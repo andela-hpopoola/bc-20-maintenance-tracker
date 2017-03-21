@@ -1,0 +1,66 @@
+
+
+@brand-primary:         	#446CB3; 
+@brand-secondary:         	#26A65B; 
+@brand-gray: 				#f2f4f5;
+@brand-gray-border: 		#e5e5e5;
+@brand-border: 				#e5e5e5;
+
+@text-color: 				#3c3c44;
+@text-color-gray:  			#949499;
+
+
+@gray-color: 				#aaaaaa;
+@color-gray: 				@gray-color;
+
+@bg-gray-color: 			#f5f5f5;
+@bg-gray: 					#f5f5f5;
+
+@border-radius-base:        1px;
+@border-radius-large:       2px;
+@border-radius-small:       0;
+
+
+@btn-default-color:              white;
+@btn-default-bg:                 @brand-secondary;
+@btn-default-border:             darken(@brand-secondary, 5%);
+
+
+
+//** Unit-less `line-height` for use in components like buttons.
+@line-height-base:        1.7; // 20/14
+//** Computed "line-height" (`font-size` * `line-height`) for use with `margin`, `padding`, etc.
+@line-height-computed:    floor((@font-size-base * @line-height-base)); // ~20px
+
+
+@font-raleway: 				'Raleway', sans-serif;
+@font-lato: 				'Lato', sans-serif;
+
+@font-headings: 			@font-raleway;
+@font-text: 				@font-lato;
+
+@font-family-sans-serif:  @font-text;
+@font-family-serif:       @font-headings;
+@headings-font-family:    @font-headings;
+
+
+//** Text color for `<input>`s
+@input-color:                    @gray-color;
+//** `<input>` border color
+@input-border:                   @brand-gray-border;
+
+//** Border color for inputs on focus
+@input-border-focus:             @brand-primary;
+
+
+//** Placeholder text color
+@input-color-placeholder:        #999;
+
+//** Default `.form-control` height
+@input-height-base:              (@line-height-computed + (@padding-base-vertical * 2) + 10);
+//** Large `.form-control` height
+@input-height-large:             (ceil(@font-size-large * @line-height-large) + (@padding-large-vertical * 2) + 10);
+//** Small `.form-control` height
+@input-height-small:             (floor(@font-size-small * @line-height-small) + (@padding-small-vertical * 2) + 10);
+
+

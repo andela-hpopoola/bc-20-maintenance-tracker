@@ -1,0 +1,28 @@
+{
+  "name": "bc-20-maintenance-tracker",
+  "version": "0.0.1",
+  "description": "A system to allow reporting of maintenance and repairs request, to track the maintenance process and escalate unusual delays.",
+  "main": "app.js",
+  "scripts": {
+    "test": "jasmine"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/harunapopoola/bc-20-maintenance-tracker.git"
+  },
+  "author": "Haruna Popoola",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/harunapopoola/bc-20-maintenance-tracker/issues"
+  },
+  "homepage": "https://github.com/harunapopoola/bc-20-maintenance-tracker#readme",
+  "devDependencies": {
+    "jasmine": "^2.5.3"
+  },
+  "dependencies": {
+    "express": "^4.15.2",
+    "express-handlebars": "^3.0.0",
+    "hbs": "^4.0.1",
+    "mongodb": "^2.2.25"
+  }
+}
