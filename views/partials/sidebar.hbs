@@ -3,15 +3,55 @@
           <div class="list-group">
             
             <!-- Dashboard -->
-            <a class="list-group-item header" href="http://ism.edu.ng/admin/dashboard.php"><span class="fa fa-dashboard"></span> &nbsp; Dashboard</a>
+            <a class="list-group-item header" href="/">
+              <span class="fa fa-dashboard"></span> &nbsp; Dashboard
+            </a>
 
             <!-- Edit Contents -->
-            <a data-toggle="collapse" class="list-group-item header collapsed" href="#collapseEditContent">
-            <span class="fa fa-file-text"></span> &nbsp; Requests</a>
-            <div id="collapseEditContent" class="collapse" style="height: 0px;">
-              <a class="list-group-item small" href="http://ism.edu.ng/admin/pages/"><span class="fa fa-caret-right"></span> &nbsp; All Pages</a>
-              <a class="list-group-item small" href="http://ism.edu.ng/admin/pages/new.php"><span class="fa fa-caret-right"></span> &nbsp; New Page</a>
+            <a data-toggle="collapse" class="list-group-item header collapsed" href="#collapseRepairs">
+              <span class="fa fa-file-text"></span> &nbsp; Repairs
+            </a>
+            <div id="collapseRepairs" class="collapse" style="height: 0px;">
+              <a class="list-group-item small" href="repairs">
+                <span class="fa fa-caret-right"></span> &nbsp; All Repairs
+              </a>
+              <a class="list-group-item small" href="repairs/new">
+                <span class="fa fa-caret-right"></span> &nbsp; New Repair
+              </a>
             </div>
+
+            <!-- Edit Contents -->
+            <a data-toggle="collapse" class="list-group-item header collapsed" href="#collapseMaintenance">
+              <span class="fa fa-file-text"></span> &nbsp; Maintenance
+            </a>
+            <div id="collapseMaintenance" class="collapse" style="height: 0px;">
+              <a class="list-group-item small" href="/maintenances">
+                <span class="fa fa-caret-right"></span> &nbsp; All Maintenances
+              </a>
+              <a class="list-group-item small" href="/maintenances/new">
+                <span class="fa fa-caret-right"></span> &nbsp; New Maintenance
+              </a>
+            </div>
+
+
+            <!-- Users -->
+            <a data-toggle="collapse" class="list-group-item header collapsed" href="#collapseUsers">
+              <span class="fa fa-users"></span> &nbsp; Users
+            </a>
+            <div id="collapseUsers" class="collapse" style="height: 0px;">
+              <a class="list-group-item small" href="/users">
+                <span class="fa fa-caret-right"></span> &nbsp; All Users
+              </a>
+              <a class="list-group-item small" href="/users/new">
+                <span class="fa fa-caret-right"></span> &nbsp; New User
+              </a>
+            </div>
+
+
+            <!-- Add New Staff -->
+            <a class="list-group-item header" href="/register"><span class="fa fa-user"></span> &nbsp; Add New Staff</a>
+
+            <a class="list-group-item header" href="/register"><span class="fa fa-user"></span> &nbsp; Edit Profile</a>
 
             <!-- Logout -->
             <a class="list-group-item header" href="/logout"><span class="fa fa-sign-out"></span> &nbsp; Logout</a>
