@@ -1,56 +1,103 @@
-var express = require('express');
-const hbs = require('hbs');
-var bodyParser = require('body-parser');
-var {ObjectID} = require('mongodb');
-
-var adminRouter = express.Router();
-
 // Load my models
 var {mongoose} = require('../config/mongoose');
 var {Admin} = require('../models/admin');
 
-var app = express();
-const port = process.env.PORT || 3000;
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }))
-app.set('view engine', 'hbs');
+module.exports = function(app) {
 
-/*
- *  Set the Partials Folder
- */
-hbs.registerPartials('../views/partials');
+    /*
+     *  SIGN IN PAGE - POST
+     */
+    app.post('/', (req, res) => {
 
+      // Get the email and password
+       var user = {
+          email: req.body.email,
+          password: req.body.password,
+       };
+       console.log(user);
 
-var router = function (nav) {
+       // Find the admin and save in admin variable
+       Admin.findOne(user).then((admin) => {
 
-    // /admin/
-    adminRouter.route('/').get(function (req, res) {
-       res.render('dashboard.hbs');
+          /*
+           * The login details is incorrect
+           * Show an error message
+           */
+          if(!admin){
+            return res.render('login.hbs',{
+              email : req.body.email,
+              password : req.body.password,
+              error : 'Invalid Username or Password'
+            });
+          } 
+
+          // console.log(admin);
+
+          // Add sessions here
+          req.session.adminId = admin._id;
+          req.session.level = admin.level;
+          req.session.name = admin.first_name + ' ' + admin.last_name;
+
+          // Redirect to the dashboard
+          return res.render('dashboard.hbs',{
+            name : req.session.name,
+            level : req.session.level
+          });
+
+        }, (e) => {
+
+          res.status(400).send(e);      
+        });
     });
 
-    adminRouter.route('/').post(function (req, res) {
-       res.render('dashboard.hbs');
+
+    /*
+     *  LOG OUT PAGE
+     */
+    app.get('/logout', (req, res) => {
+
+      // Destroy the session
+      req.session.destroy((err) => {
+
+        //redirect to the login page
+        res.render('login.hbs', {
+          message : 'You have succesfully logged out'
+        });
+      })
+
     });
 
-    adminRouter.route('/').put(function (req, res) {
-       res.render('dashboard.hbs');
+
+    
+    /*
+     *  REGISTER A NEW ADMIN
+     */
+    app.get('/register', (req, res) => {
+      return res.render('admin/register.hbs');
     });
 
-    adminRouter.route('/').delete(function (req, res) {
-       res.render('dashboard.hbs');
+
+    
+    /*
+     *  REGISTER A NEW ADMIN - POST
+     */
+    app.post('/register', (req, res) => {
+
+        var admin = new Admin({
+           first_name: req.body.first_name,
+           last_name: req.body.last_name,
+           email: req.body.email,
+           password: req.body.password,
+           level: req.body.level
+       });
+
+      admin.save().then((result) => {
+          return res.send(result);
+      }, (e) => {
+        res.status(400).send(e);
+      });
+
     });
 
-    adminRouter.route('/').get(function (req, res) {
-        
-        var id = req.params.id;
-
-        if (!ObjectID.isValid(id)) {
-            return res.status(404).send();
-        }
-    });
-
-    return adminRouter;
 };
-
-module.exports = router;
