@@ -8,7 +8,7 @@
 		            {{!-- used to prevent float --}}
 		            <div class="clearfix"></div>
 
-		            <form id="login_form" name="login" action="/login" role="form" method="post">
+		            <form id="login_form" name="login" action="/" role="form" method="post">
 						
 						<!-- Email Address -->
 						<div class="input-group">
@@ -25,6 +25,26 @@
 							<input type="password" name="password" id="password" class="form-control" placeholder="Password" required>
 						</div>
 						<!-- /.Password -->
+
+
+						{{!-- Invalid Username and Password --}}
+						{{#if error}}
+						<div class="alert alert-danger" role="alert">
+						  <span class="fa fa-exclamation-circle" aria-hidden="true"></span>
+						  <span class="sr-only">Error:</span>
+						  {{ error }}
+						</div>
+ 						{{/if}}
+
+
+						{{!-- Other Messages --}}
+						{{#if message}}
+						<div class="alert alert-info" role="alert">
+						  <span class="fa fa-fa fa-info-circle" aria-hidden="true"></span>
+						  <span class="sr-only">Message: </span>
+						  {{ message }}
+						</div>
+ 						{{/if}}
 
 						<!-- Submit Button -->
 						<button type="submit" class="btn btn-primary">Submit</button>

@@ -20,6 +20,10 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }))
 
 
+// Use Sessions
+app.use(session({ secret: 'andela', resave: false, saveUninitialized: true, cookie: { maxAge: 60000 }}))
+
+
 /*
  *  Middlewares
  *  Make the public folder accessible for everyone
@@ -41,11 +45,22 @@ hbs.registerPartials(__dirname + '/views/partials');
  *  Redirects to Dashboard on Successful Login 
  */
 app.get('/', (req, res) => {
-  res.render('login.hbs');
+
+  /*
+   * if the user is previously logged in
+   * Redirect the user into the database 
+   */ 
+  if (req.session.id){
+    res.render('dashboard.hbs'); 
+  } else {
+      res.render('login.hbs');
+  }
+
 });
 
+
 // Sign In
-app.post('/login', (req, res) => {
+app.post('/', (req, res) => {
 
   // Get the email and password
    var user = {
@@ -57,20 +72,48 @@ app.post('/login', (req, res) => {
    // Find the admin and save in admin variable
    Admin.findOne(user).then((admin) => {
 
-      // No admin found
+      /*
+       * The login details is incorrect
+       * Show an error message
+       */
       if(!admin){
-        return res.send('Not logged in!');
+        return res.render('login.hbs',{
+          email : req.body.email,
+          password : req.body.password,
+          error : 'Invalid Username or Password'
+        });
       } 
 
-      // TODO: Add sessions here
-      // 
-      return res.render('dashboard.hbs');
+      console.log(admin);
+      // Add sessions here
+      // req.session.name = admin.name;
+      req.session.adminId = admin._id;
+
+      // Redirect to the dashboard
+      return res.render('dashboard.hbs',{
+        name : admin.first_name,
+        level : admin.level
+      });
 
     }, (e) => {
-      res.status(400).send(e);
+
+      res.status(400).send(e);      
     });
 });
 
+
+app.get('/logout', (req, res) => {
+
+  // Destroy the session
+  req.session.destroy((err) => {
+
+    //redirect to the login page
+    res.render('login.hbs', {
+      message : 'You have succesfully logged out'
+    });
+  })
+
+});
 
 /*
  *  SIGN UP - GET METHOD
