@@ -9,6 +9,7 @@ var {mongoose} = require('./config/mongoose');
 var {Admin} = require('./models/admin');
 var {User} = require('./models/user');
 var {Requests} = require('./models/requests');
+var {Repairs} = require('./models/repairs');
 var {Comments} = require('./models/comments');
 
 // Start Express
@@ -219,7 +220,6 @@ app.post('/requests', (req, res) => {
 // Show Request Page
 app.get('/requests/all', (req, res) => {
   Requests.find().then((result) => {
-  user_id = result.user
   res.render('allRequests.hbs',{
     results : result,
   });
@@ -227,6 +227,57 @@ app.get('/requests/all', (req, res) => {
     res.status(400).send(e);
   });
 });
+
+
+
+/*
+ *  Request Page
+ *
+ * @redirect to all requests.hbs
+ */
+app.get('/repairs', (req, res) => {
+
+  return res.render('repairs/new.hbs', {
+    adminName : req.session.name
+  });
+});
+
+
+/*
+ *  ADMIN REGISTRATION
+ *  POST METHOD
+ *
+ * @success redirect to dashboard
+ */
+app.post('/repairs', (req, res) => {
+
+    var repair = new Repairs({
+       user_name: req.body.user_name,
+       request: req.body.request,
+       admin_name: req.body.admin_name
+   });
+
+  repair.save().then((result) => {
+      return res.send(result);
+  }, (e) => {
+    // TODO: change to html page
+    res.status(400).send(e);
+  });
+
+});
+
+
+// Show Request Page
+app.get('/repairs/all', (req, res) => {
+  Repairs.find().then((result) => {
+  res.render('repairs/all.hbs',{
+    results : result,
+  });
+  }, (e) => {
+    res.status(400).send(e);
+  });
+});
+
 
 
 app.listen(port, () => {
