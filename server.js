@@ -280,6 +280,49 @@ app.get('/repairs/all', (req, res) => {
 
 
 
+
+/*
+ *  Users
+ *
+ * @redirect to all requests.hbs
+ */
+app.get('/users', (req, res) => {
+
+  return res.render('users/new.hbs');
+});
+
+
+app.post('/users', (req, res) => {
+
+    var user = new User({
+       first_name: req.body.first_name,
+       last_name: req.body.last_name,
+       email: req.body.email,
+       phone: req.body.phone,
+   });
+
+  user.save().then((result) => {
+      return res.send(result);
+  }, (e) => {
+    // TODO: change to html page
+    res.status(400).send(e);
+  });
+
+});
+
+
+// Show Request Page
+app.get('/users/all', (req, res) => {
+  User.find().then((result) => {
+  res.render('users/all.hbs',{
+    results : result,
+  });
+  }, (e) => {
+    res.status(400).send(e);
+  });
+});
+
+
 app.listen(port, () => {
   console.log(`Started up at port ${port}`);
 });
