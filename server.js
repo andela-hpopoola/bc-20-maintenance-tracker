@@ -43,7 +43,7 @@ app.get('*', function(req, res, next) {
    */
   if ((req.url !== '/') && (req.url !== '/logout') && (!req.session.adminId)) {
     console.log('checkAuth ' + req.url);
-    res.render('login.hbs', { error : 'Kindly log in to access page' });
+    res.render('admin/login.hbs', { error : 'Kindly log in to access page' });
     return;
   }
 
@@ -73,12 +73,12 @@ app.get('/', (req, res) => {
    * Redirect the user into the database 
    */ 
   if (req.session.id && req.session.level){
-    res.render('dashboard.hbs',{
+    res.render('admin/dashboard.hbs',{
         name : req.session.name,
         level : req.session.level
       }); 
   } else {
-      res.render('login.hbs');
+      res.render('admin/login.hbs');
   }
 
 });

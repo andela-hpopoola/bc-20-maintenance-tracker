@@ -25,7 +25,7 @@ module.exports = function(app) {
            * Show an error message
            */
           if(!admin){
-            return res.render('login.hbs',{
+            return res.render('admin/login.hbs',{
               email : req.body.email,
               password : req.body.password,
               error : 'Invalid Username or Password'
@@ -40,7 +40,7 @@ module.exports = function(app) {
           req.session.name = admin.first_name + ' ' + admin.last_name;
 
           // Redirect to the dashboard
-          return res.render('dashboard.hbs',{
+          return res.render('admin/dashboard.hbs',{
             name : req.session.name,
             level : req.session.level
           });
@@ -61,7 +61,7 @@ module.exports = function(app) {
       req.session.destroy((err) => {
 
         //redirect to the login page
-        res.render('login.hbs', {
+        res.render('admin/login.hbs', {
           message : 'You have succesfully logged out'
         });
       })
