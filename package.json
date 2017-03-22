@@ -4,7 +4,8 @@
   "description": "A system to allow reporting of maintenance and repairs request, to track the maintenance process and escalate unusual delays.",
   "main": "app.js",
   "scripts": {
-    "test": "jasmine"
+    "test": "jasmine",
+    "start": "node app.js"
   },
   "repository": {
     "type": "git",
@@ -20,9 +21,17 @@
     "jasmine": "^2.5.3"
   },
   "dependencies": {
+    "body-parser": "^1.17.1",
+    "cookie-parser": "^1.4.3",
     "express": "^4.15.2",
     "express-handlebars": "^3.0.0",
+    "express-session": "^1.15.1",
     "hbs": "^4.0.1",
-    "mongodb": "^2.2.25"
+    "lodash": "^4.17.4",
+    "mongodb": "^2.2.25",
+    "mongoose": "^4.5.9",
+    "passport": "^0.3.2",
+    "passport-local": "^1.0.0",
+    "validator": "^5.6.0"
   }
 }
