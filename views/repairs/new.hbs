@@ -8,16 +8,16 @@
 		            {{!-- used to prevent float --}}
 		            <div class="clearfix"></div>
 
-		            <form name="login" action="/repairs" class="form-horizontal" role="form" method="post">
+		            <form name="login" action="/repairs/new" class="form-horizontal" role="form" method="post">
 						
 						{{!-- User --}}
 						<div class="form-group">
 						  <label class="col-sm-2 control-label">User <span class="mandatory">*</span></label>
 						  <div class="col-sm-7">
 							<select name="user_name" id="user_name" class="form-control">
-								<option value="0">Select User</option>
-								<option value="First User">First User</option>
-								<option value="Second User">Second User</option>
+								{{#each users}}
+								<option value="{{ this.first_name }} {{ this.last_name}}">{{ this.first_name }} {{ this.last_name}}</option>
+								{{/each}}
 							</select>
 						  </div>
 	                  	</div>
