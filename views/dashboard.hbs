@@ -1,0 +1,72 @@
+{{> header}}
+
+    <div class="row">
+      <div class="col-sm-8 col-sm-push-4">
+
+      <!-- content  start -->
+      <div id="content">
+
+        <h3>Welcome back Admin,</h3>
+
+        <div class="row">
+          <div class="col-xs-6 col-sm-3 dash-menu"><a href="http://ism.edu.ng/admin/pages/"><i class="fa fa-file-text"></i>All Pages</a></div>
+          <div class="col-xs-6 col-sm-3 dash-menu"><a href="http://ism.edu.ng/admin/programmes/"><i class="fa fa-briefcase"></i>All Programmes</a></div>
+          <div class="col-xs-6 col-sm-3 dash-menu"><a href="http://ism.edu.ng/admin/campaign/current.php"><i class="fa fa-paste"></i>Current Campaigns</a></div>
+          <div class="col-xs-6 col-sm-3 dash-menu"><a href="http://ism.edu.ng/admin/users/logout.php"><i class="fa fa-sign-out"></i>Logout</a></div>
+        </div>
+
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h4>31 Programmes need your attention</h4>
+          </div>
+          <div class="table-responsive">
+            <table class="table table-bordered table-striped table-hover responsive">
+              <thead>
+                <tr>
+                  <th style="width:5%;" class="text-center"><strong>#</strong></th>
+                  <th style="width:60%;"><strong>Name</strong></th>
+                  <th style="width:35%;"><strong>New Date</strong></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="text-center">1</td>
+                  <td>
+                    <h6 class="no-margin"><a href="http://ism.edu.ng/admin/programmes/edit.php?programme=21">Skills for Assertive Communication</a></h6>
+                    <p class="no-margin text-muted small">February 9 - 10,  2017</p>
+                    <p>
+                      <span class="label label-md label-danger">Expired Date</span>                                                    </p>
+                    </td>
+                    <td class="text-right">
+                      <form action="#" method="post">
+                        
+                        <div class="input-group">
+                          <input type="date" name="start_date" class="form-control" placeholder="MM/DD/YYYY">
+                          <span class="input-group-btn">
+                            <button type="submit" class="btn btn-default">Go</button>
+                          </span>
+                        </div>
+                        <input type="hidden" name="programme_id" value="21">
+                      </form>
+                    </td>
+                  </tr>
+
+                </tbody>
+            </table>
+          </div>
+          <div class="panel-footer">
+            <ul class="pagination pagination-md pull-right">
+              <li class="active"><a href="#">1</a></li>  <li><a href="/admin/dashboard.php?p=2">2</a></li> <li><a href="/admin/dashboard.php?p=3">3</a></li> <li><a href="/admin/dashboard.php?p=4">4</a></li> <li><a href="/admin/dashboard.php?p=2">»</a></li>                                      </ul>
+              <div class="clearfix"></div>
+            </div>
+          </div>
+        </div>
+        <!-- content  end -->
+      </div>   
+    
+      {{> sidebar}}
+                    
+    </div>
+    {{!-- End Row --}}
+
+{{> footer}}

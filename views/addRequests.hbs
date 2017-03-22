@@ -1,0 +1,41 @@
+{{> header}}
+
+	<!-- container -->
+	<div class="container">
+
+		<div class="row">
+		    <div class="col-xs-12">
+
+		      <div class="row">
+
+		        <div class="log-in center-block col-sm-6 col-md-5 col-xs-12">
+		            
+		            <h3>Add Request</h3>
+		            {{!-- used to prevent float --}}
+		            <div class="clearfix"></div>
+
+		            <form id="login_form" name="login" action="requests" method="post">
+						
+						<!-- Request -->
+						<div class="input-group">
+							<textarea name="request"class="form-control"></textarea>
+						</div>
+						<!-- /.Request -->
+
+						<!-- Submit Button -->
+						<button type="submit" class="btn btn-primary">Submit</button>
+						<!-- /.Submit Button -->
+
+		            </form>
+
+		        </div>
+		        
+		      </div>
+		   
+		    </div>
+		</div>
+
+	</div>
+	<!-- /container -->  
+
+{{> footer}}
