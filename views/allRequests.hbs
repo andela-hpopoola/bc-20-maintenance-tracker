@@ -1,0 +1,56 @@
+{{> header}}
+
+    <div class="row">
+      <div class="col-sm-8 col-sm-push-4">
+
+      <!-- content  start -->
+      <div id="content">
+
+        <h3>All Maintenance and Requests</h3>
+
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h4>Maintenance and Requests Tracking</h4>
+          </div>
+          <div class="table-responsive">
+            <table class="table table-bordered table-striped table-hover responsive">
+              <thead>
+                <tr>
+                  <th style="width:5%;" class="text-center"><strong>#</strong></th>
+                  <th style="width:50%;"><strong>Request</strong></th>
+                  <th style="width:15%;"><strong>Request Type</strong></th>
+                  <th style="width:15%;"><strong>Resolved</strong></th>
+                  <th style="width:15%;"><strong>Approved</strong></th>
+                </tr>
+              </thead>
+              <tbody>
+                {{ count = 0 }}
+                {{#each results}}
+                <tr>
+                  <td class="text-center">{{ count++ }}</td>
+                  <td>{{ this.request}}</td>
+                  <td>{{ this.request_type }}</td>
+                  <td>{{ this.resolved }}</td>
+                  <td>{{ this.approved }}</td>
+                </tr>
+                {{/each}}
+
+                </tbody>
+            </table>
+          </div>
+          <div class="panel-footer">
+            <ul class="pagination pagination-md pull-right">
+              <li class="active"><a href="#">1</a></li>  <li><a href="/admin/dashboard.php?p=2">2</a></li> <li><a href="/admin/dashboard.php?p=3">3</a></li> <li><a href="/admin/dashboard.php?p=4">4</a></li> <li><a href="/admin/dashboard.php?p=2">»</a></li>                                      </ul>
+              <div class="clearfix"></div>
+            </div>
+          </div>
+        </div>
+        <!-- content  end -->
+      </div>   
+    
+      {{> sidebar}}
+                    
+    </div>
+    {{!-- End Row --}}
+
+{{> footer}}

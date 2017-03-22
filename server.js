@@ -21,7 +21,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 
 
 // Use Sessions
-app.use(session({ secret: 'andela', resave: false, saveUninitialized: true, cookie: { maxAge: 60000 }}))
+app.use(session({ secret: 'andela', resave: false, saveUninitialized: true, cookie: { maxAge: 600000 }}))
 
 
 /*
@@ -29,6 +29,27 @@ app.use(session({ secret: 'andela', resave: false, saveUninitialized: true, cook
  *  Make the public folder accessible for everyone
  */
 app.use(express.static('public'));
+
+// Authentication Middleware
+app.get('*', function(req, res, next) {
+
+  // console.log(req.session);
+
+  /*
+   *  Disable Authentication it is the homepage
+   *  and the user is not logged in
+   *  
+   */
+  if ((req.url !== '/') && (req.url !== '/logout') && (!req.session.adminId)) {
+    console.log('checkAuth ' + req.url);
+    res.render('login.hbs', { error : 'Kindly log in to access page' });
+    return;
+  }
+
+  next();
+
+
+});
 
 /*
  * Handlebars is used as the view engine
@@ -50,8 +71,11 @@ app.get('/', (req, res) => {
    * if the user is previously logged in
    * Redirect the user into the database 
    */ 
-  if (req.session.id){
-    res.render('dashboard.hbs'); 
+  if (req.session.id && req.session.level){
+    res.render('dashboard.hbs',{
+        name : req.session.name,
+        level : req.session.level
+      }); 
   } else {
       res.render('login.hbs');
   }
@@ -88,11 +112,13 @@ app.post('/', (req, res) => {
       // Add sessions here
       // req.session.name = admin.name;
       req.session.adminId = admin._id;
+      req.session.level = admin.level;
+      req.session.name = admin.first_name + ' ' + admin.last_name;
 
       // Redirect to the dashboard
       return res.render('dashboard.hbs',{
-        name : admin.first_name,
-        level : admin.level
+        name : req.session.name,
+        level : req.session.level
       });
 
     }, (e) => {
@@ -115,12 +141,13 @@ app.get('/logout', (req, res) => {
 
 });
 
+
 /*
  *  SIGN UP - GET METHOD
  *
  * @redirect to signup.hbs
  */
-app.get('/signup', (req, res, next) => {
+app.get('/signup', (req, res) => {
   return res.render('signup.hbs');
 });
 
@@ -131,7 +158,7 @@ app.get('/signup', (req, res, next) => {
  *
  * @success redirect to dashboard
  */
-app.post('/signup', (req, res, next) => {
+app.post('/signup', (req, res) => {
 
     var admin = new Admin({
        first_name: req.body.first_name,
@@ -151,33 +178,55 @@ app.post('/signup', (req, res, next) => {
 });
 
 
-
-// Show Request Page
+/*
+ *  Request Page
+ *
+ * @redirect to all requests.hbs
+ */
 app.get('/requests', (req, res) => {
-  res.render('requests/index.hbs');
-});
 
-app.get('/requests/add', (req, res) => {
-  res.render('addRequests.hbs');
-});
-
-
-app.post('/requests', (req, res) => {
-  // res.send(req.body.request);
-  var requests = new Requests({
-    request: req.body.request
+  return res.render('addRequests.hbs', {
+    adminName : req.session.name
   });
+});
 
-  requests.save().then((doc) => {
-    // render the page
-    res.render('dashboard.hbs');
+
+/*
+ *  ADMIN REGISTRATION
+ *  POST METHOD
+ *
+ * @success redirect to dashboard
+ */
+app.post('/requests', (req, res) => {
+
+    var request = new Requests({
+       user_name: req.body.user_name,
+       request: req.body.request,
+       request_type: req.body.request_type,
+       admin_name: req.body.admin_name
+   });
+
+  request.save().then((result) => {
+      return res.send(result);
   }, (e) => {
+    // TODO: change to html page
     res.status(400).send(e);
   });
 
 });
 
 
+// Show Request Page
+app.get('/requests/all', (req, res) => {
+  Requests.find().then((result) => {
+  user_id = result.user
+  res.render('allRequests.hbs',{
+    results : result,
+  });
+  }, (e) => {
+    res.status(400).send(e);
+  });
+});
 
 
 app.listen(port, () => {

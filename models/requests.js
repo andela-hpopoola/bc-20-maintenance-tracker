@@ -2,14 +2,14 @@ const mongoose = require('mongoose');
 
 var Requests = mongoose.model('Requests', {
 
-  user_id: {
-  	type: Number,
-  	default: 0
+  user_name: {
+  	type: String,
+    required: true
   },
 
-  admin_id: {
-  	type: Number,
-  	default: 0
+  admin_name: {
+  	type: String,
+    required: true
   },
 
   request: {
