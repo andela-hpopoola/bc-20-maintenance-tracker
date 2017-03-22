@@ -8,21 +8,21 @@
 		            {{!-- used to prevent float --}}
 		            <div class="clearfix"></div>
 
-		            <form id="login_form" name="login" action="#" role="form" method="post">
+		            <form id="login_form" name="login" action="/login" role="form" method="post">
 						
 						<!-- Email Address -->
 						<div class="input-group">
 							<span class="input-group-addon">
 								<label for="email" class="control-label icon-label"><i class="fa fa-user"></i></label>
 							</span>
-							<input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+							<input type="email" id="inputEmail" name="email" class="form-control" placeholder="Email address" required autofocus>
 						</div>
 						<!-- /.Email Address -->
 		
 						<!-- Password -->
 						<div class="input-group">
 							<span class="input-group-addon"><label for="password"><i class="fa fa-lock"></i></label></span>
-							<input type="password" id="password" class="form-control" placeholder="Password" required>
+							<input type="password" name="password" id="password" class="form-control" placeholder="Password" required>
 						</div>
 						<!-- /.Password -->
 
