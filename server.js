@@ -32,24 +32,24 @@ app.use(session({ secret: 'andela', resave: false, saveUninitialized: true, cook
 app.use(express.static('public'));
 
 // Authentication Middleware
-// app.get('*', function(req, res, next) {
+app.get('*', function(req, res, next) {
 
-//   // console.log(req.session);
+  // console.log(req.session);
 
-//   /*
-//    *  Disable Authentication for the homepage
-//    *  and the user is not logged in
-//    *  
-//    */
-//   if ((req.url !== '/') && (req.url !== '/logout') && (!req.session.adminId)) {
-//     console.log('checkAuth ' + req.url);
-//     res.render('admin/login.hbs', { error : 'Kindly log in to access page' });
-//     return;
-//   }
+  /*
+   *  Disable Authentication for the homepage
+   *  and the user is not logged in
+   *  
+   */
+  if ((req.url !== '/') && (req.url !== '/logout') && (!req.session.adminId)) {
+    console.log('checkAuth ' + req.url);
+    res.render('admin/login.hbs', { error : 'Kindly log in to access page' });
+    return;
+  }
 
-//   next();
+  next();
 
-// });
+});
 
 /*
  * Handlebars is used as the view engine

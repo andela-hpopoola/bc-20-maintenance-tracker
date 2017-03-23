@@ -3,14 +3,6 @@
     <div class="row">
       <div class="col-sm-8 col-sm-push-4">
 
-      <!-- content  start -->
-      <div id="content">
-
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <h4>All Requests</h4>
-          </div>
-
           {{#if message}}
           <div class="alert alert-success" role="alert">
             <span class="fa fa-check-circle" aria-hidden="true"></span>
@@ -18,6 +10,14 @@
             {{ message }}
           </div>
           {{/if}}
+
+      <!-- content  start -->
+      <div id="content">
+
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h4>All Requests</h4>
+          </div>
 
           <div class="table-responsive">
             <table class="table table-bordered table-striped table-hover responsive">
@@ -40,12 +40,8 @@
                     {{#if this.approved}}
                       YES  
                     {{else}}
-                      NO {{!-- 
-                      <form action="/approve-request" method="get">
-                      <input type="hidden" name="id" value="{{ this._id }}">
-                        <button type="submit" class="btn btn-default">Resolve Now</a>
-                      </form>  --}}
-                      <a href="approve-request/{{this._id}}" class="btn btn-default"> Approve</a>
+                      NO 
+                      <a href="{{fullUrl}}/approve-request/{{this._id}}" class="btn btn-default"> Approve</a>
                     {{/if}}
                   </td>
 
@@ -54,11 +50,8 @@
                     {{#if this.resolved}}
                       YES 
                     {{else}}
-                      NO  {{!-- 
-                      <form action="/resolve-request/{{ this._id }}" method="get">
-                        <input type="hidden" name="_method" value="PUT">
-                        <button type="submit" class="btn btn-default">Resolve Now</a>
-                      </form>  --}}
+                      NO  
+                      <a href="{{fullUrl}}/resolve-request/{{this._id}}" class="btn btn-default"> Approve</a>
                     {{/if}}
 
                   </td>
