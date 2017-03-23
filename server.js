@@ -41,7 +41,7 @@ app.get('*', function(req, res, next) {
    *  and the user is not logged in
    *  
    */
-  if ((req.url !== '/') && (req.url !== '/logout') && (!req.session.adminId)) {
+  if ((req.url !== '/') && (req.url !== '/logout') && (req.url !== '/install') && (!req.session.adminId)) {
     console.log('checkAuth ' + req.url);
     res.render('admin/login.hbs', { error : 'Kindly log in to access page' });
     return;

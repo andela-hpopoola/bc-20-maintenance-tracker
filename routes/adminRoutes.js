@@ -108,6 +108,32 @@ module.exports = function(app) {
       });
 
     });
+
+
+    /*
+     * Install Dummy Information
+     */
+
+    app.get('/install', (req, res) => {
+
+        var admin = new Admin({
+           first_name: 'Andela',
+           last_name: 'Test',
+           email: 'test@andela.com',
+           password: '123456',
+           phone: '08022222222',
+           level: true
+       });
+
+      admin.save().then((result) => {
+          return res.render('admin/login.hbs',{
+            message: `Default Account Created : (Email : ${$result.email}) and (Password : ${result.password}) `
+          });
+      }, (e) => {
+        res.status(400).send(e);
+      });
+
+    });
     
 
 };
