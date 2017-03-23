@@ -1,8 +1,18 @@
+var multer  =   require('multer');
+
 // Load my models
 var {mongoose} = require('../config/mongoose');
 var {Comments} = require('../models/comments');
 var {User} = require('../models/user');
 
+// Set Up multer
+var storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'public/uploads/')
+  }
+});
+ 
+var upload = multer({ storage: storage }, { limits: {fileSize: '1MB'}}).single('picture');
 
 module.exports = function(app) {
 
@@ -46,17 +56,36 @@ module.exports = function(app) {
   });
 
   /*
-   *  Process a new Comment Comment
+   *  Process a new Comment
    *  POST METHOD
    */
   app.post('/comments/new', (req, res) => {
 
-      var comment = new Comments({
-         title: req.body.title,
-         description: req.body.description,
-         admin_name: req.body.admin_name,
-         comment_id: req.body.comment_id,
-     });
+    console.log(req.files);
+
+    //Upload images here
+    upload(req, res, function (err, image) {
+        if (err) {
+          // An error occurred when uploading 
+          console.log(err);
+          return;
+        }
+        
+        // Everything went fine 
+        console.log('File has beens successfully uploaded');
+        console.log(req.files);
+
+        return;
+        
+      });
+
+
+    var comment = new Comments({
+       title: req.body.title,
+       description: req.body.description,
+       admin_name: req.body.admin_name,
+       comment_id: req.body.comment_id,
+   });
 
     comment.save().then((result) => {
         // Redirect to the comments page to show all
