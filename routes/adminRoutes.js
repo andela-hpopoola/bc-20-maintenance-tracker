@@ -16,7 +16,7 @@ module.exports = function(app) {
       // Get the email and password
        var user = { email, password};
 
-       console.log(user);
+       // console.log(user);
 
        // Find the admin and save in admin variable
        Admin.findOne(user).then((admin) => {
