@@ -16,7 +16,7 @@
 
         <div class="panel panel-default">
           <div class="panel-heading">
-            <h4>All Requests</h4>
+            <h4>All comments</h4>
           </div>
 
           <div class="table-responsive">
@@ -25,8 +25,6 @@
                 <tr>
                   <th style="width:5%;" class="text-center"><strong>#</strong></th>
                   <th style="width:60%;"><strong>Description</strong></th>
-                  <th style="width:15%;"><strong>Approved</strong></th>
-                  <th style="width:15%;"><strong>Resolved</strong></th>
                   <th style="width:15%;"></th>
                 </tr>
               </thead>
@@ -35,29 +33,7 @@
                 <tr>
                   <td class="text-center">{{counter @index }}</td>
                   <td><h3>{{ this.title }} <br><small>{{ this.description}}</small></h3></td>
-
-                  <td>
-                    {{#if this.approved}}
-                      YES  
-                    {{else}}
-                      NO 
-                      <a href="{{fullUrl}}/approve-request/{{this._id}}" class="btn btn-default"> Approve</a>
-                    {{/if}}
-                  </td>
-
-
-                  <td>
-                    {{#if this.resolved}}
-                      YES 
-                    {{else}}
-                      NO  
-                      <a href="{{fullUrl}}/resolve-request/{{this._id}}" class="btn btn-default"> Approve</a>
-                    {{/if}}
-
-                  </td>
-
-
-                  <td><a href="{{fullUrl}}/comments/new/{{this._id}}" class="btn btn-default"> Add Comment</a></td>
+                  <td></td>
 
                 </tr>
                 {{/each}}

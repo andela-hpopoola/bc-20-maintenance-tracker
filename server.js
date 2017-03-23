@@ -94,6 +94,7 @@ app.get('/', (req, res) => {
 require('./routes/adminRoutes')(app);
 require('./routes/requestRoutes')(app);
 require('./routes/userRoutes')(app);
+require('./routes/commentRoutes')(app);
 
 
 app.listen(port, () => {

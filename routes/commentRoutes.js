@@ -1,19 +1,19 @@
 // Load my models
 var {mongoose} = require('../config/mongoose');
-var {Requests} = require('../models/requests');
+var {Comments} = require('../models/comments');
 var {User} = require('../models/user');
 
 
 module.exports = function(app) {
 
    /*
-   *  Requests Page
-   *  List all requests in the database
+   *  Comments Page
+   *  List all comments in the database
    */
-  app.get('/requests', (req, res) => {
+  app.get('/comments', (req, res) => {
     var fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
-    Requests.find().then((result) => {
-      res.render('requests/all.hbs',{
+    Comments.find().then((result) => {
+      res.render('comments/all.hbs',{
         results : result,
         fullUrl : fullUrl
       });
@@ -25,16 +25,19 @@ module.exports = function(app) {
 
 
    /*
-   *  New Request Page
-   *  Creates a new request
+   *  New Comment Page
+   *  Creates a new comment
    */
-  app.get('/requests/new', (req, res) => {
+  app.get('/comments/new/:id', (req, res) => {
+
+    var id = req.params.id;
     // Get a list of all users
     User.find().then((users) => {
-      return res.render('requests/new.hbs', {
+      return res.render('comments/new.hbs', {
           adminName : req.session.name,
           level: req.session.level,
-          users : users
+          users : users,
+          requestID : id
       });
     }, (e) => {
       res.status(400).send(e);
@@ -43,29 +46,28 @@ module.exports = function(app) {
   });
 
   /*
-   *  Process a new Request Request
+   *  Process a new Comment Comment
    *  POST METHOD
    */
-  app.post('/requests/new', (req, res) => {
+  app.post('/comments/new', (req, res) => {
 
-      var request = new Requests({
+      var comment = new Comments({
          title: req.body.title,
-         user_name: req.body.user_name,
          description: req.body.description,
          admin_name: req.body.admin_name,
-         request_type: req.body.request_type,
-         approved: req.body.approved || false
+         request_id: req.body.request_id,
      });
 
-    request.save().then((result) => {
-        // Redirect to the requests page to show all
-        Requests.find().then((result) => {
+    comment.save().then((result) => {
+        // Redirect to the comments page to show all
+        Comments.find().then((result) => {
+
 
           var fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
 
-          res.render('requests/all.hbs',{
+          res.render('comments/all.hbs',{
             results : result,
-            message: "Great! The request has been successfully resolved",
+            message: "Your comment has been successfully added",
             fullUrl: fullUrl
           });
         }, (e) => {
@@ -73,39 +75,39 @@ module.exports = function(app) {
         });
                 
     }, (e) => {
-      // REQUEST: change to html page
+      // COMMENT: change to html page
       res.status(400).send(e);
     });
 
   });
 
 
-  app.get('/approve-request/:id', (req, res) => {
+  app.get('/approve-comment/:id', (req, res) => {
 
     var id = req.params.id; 
 
-    Requests.findById(id, (err, request) => {  
+    Comments.findById(id, (err, comment) => {  
 
         // Handle any possible database errors
         if (err) {
             res.status(500).send(err);
         } else {
-            // Update each attribute with any possible attribute that may have been submitted in the body of the request
-            // If that attribute isn't in the request body, default back to whatever it was before.
-            request.approved = true;
+            // Update each attribute with any possible attribute that may have been submitted in the body of the comment
+            // If that attribute isn't in the comment body, default back to whatever it was before.
+            comment.approved = true;
 
             // Save the updated document back to the database
-            request.save(function (err, request) {
+            comment.save(function (err, comment) {
                 if (err) {
                     res.status(500).send(err)
                 }
 
                 var fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
-                // Redirect to the requests page to show all
-                Requests.find().then((result) => {
-                  res.render('requests/all.hbs',{
+                // Redirect to the comments page to show all
+                Comments.find().then((result) => {
+                  res.render('comments/all.hbs',{
                     results : result,
-                    message: "The request has been successfully approved",
+                    message: "The comment has been successfully approved",
                     fullUrl: fullUrl
                   });
                 }, (e) => {
@@ -118,33 +120,33 @@ module.exports = function(app) {
 
   });
 
-  app.get('/resolve-request/:id', (req, res) => {
+  app.get('/resolve-comment/:id', (req, res) => {
 
     var id = req.params.id; 
 
-    Requests.findById(id, (err, request) => {  
+    Comments.findById(id, (err, comment) => {  
 
         // Handle any possible database errors
         if (err) {
             res.status(500).send(err);
         } else {
-            // Update each attribute with any possible attribute that may have been submitted in the body of the request
-            // If that attribute isn't in the request body, default back to whatever it was before.
-            request.resolved = true;
+            // Update each attribute with any possible attribute that may have been submitted in the body of the comment
+            // If that attribute isn't in the comment body, default back to whatever it was before.
+            comment.resolved = true;
 
             // Save the updated document back to the database
-            request.save(function (err, request) {
+            comment.save(function (err, comment) {
                 if (err) {
                     res.status(500).send(err)
                 }
 
                 var fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
 
-                // Redirect to the requests page to show all
-                Requests.find().then((result) => {
-                  res.render('requests/all.hbs',{
+                // Redirect to the comments page to show all
+                Comments.find().then((result) => {
+                  res.render('comments/all.hbs',{
                     results : result,
-                    message: "Great! The request has been successfully resolved",
+                    message: "Great! The comment has been successfully resolved",
                     fullUrl: fullUrl
                   });
                 }, (e) => {

@@ -3,23 +3,23 @@ const mongoose = require('mongoose');
 var Comments = mongoose.model('Comments', {
 
   request_id: {
-  	type: Number,
-  	default: 0
-  },
-
-  admin_id: {
-  	type: Number,
-  	default: 0
-  },
-
-  picture: {
   	type: String,
-  	require: true
+    required: true
   },
 
-  comment: {
+  admin_name: {
+    type: String,
+    required: true
+  },
+
+  title: {
+    type: String,
+    required: true
+  },
+  
+  description: {
   	type: String,
-  	default: 'No'
+  	required: true
   }
 
 });
