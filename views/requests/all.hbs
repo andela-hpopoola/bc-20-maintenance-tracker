@@ -26,11 +26,11 @@
                 <thead>
                   <tr>
                     <th style="width:5%;" class="text-center"><strong>#</strong></th>
-                    <th style="width:40%;"><strong>Description</strong></th>
-                    <th style="width:15%;"><strong>Description</strong></th>
-                    <th style="width:15%;"><strong>Approved</strong></th>
-                    <th style="width:15%;"><strong>Resolved</strong></th>
-                    <th style="width:10%;"></th>
+                    <th style="width:30%;"><strong>Description</strong></th>
+                    <th style="width:20%;" class="text-center"><strong>Request Type</strong></th>
+                    <th style="width:15%;" class="text-center"><strong>Approved</strong></th>
+                    <th style="width:15%;" class="text-center"><strong>Resolved</strong></th>
+                    <th style="width:15%;"></th>
                   </tr>
                 </thead>
                 <tbody>
@@ -39,40 +39,44 @@
                     <td class="text-center">{{counter @index }}</td>
 
                     <td>
-                      <h3 class="title">{{ this.title }} </h3>
-                      <p class="description">{{ this.description}}</p>
+                      <h3 class="title"><a href="{{fullUrl}}/requests/{{this._id}}"> {{ this.title }} </a></h3>
                     </td>
 
-                    <td>
+                    <td class="text-center">
                       {{#if this.request_type}}
-                      <span class="label label-info"> Maintenance </span>
+                      <strong class="text-warning"> Maintenance </strong>
                       {{else}}
-                        <span class="label label-info"> Repairs </span>
+                        <strong class="text-danger"> Repairs </strong>
                       {{/if}}
                     </td>
 
-                    <td>
+                    <td class="text-center">
                       {{#if this.approved}}
-                        YES  
-                      {{else}}
-                        NO 
-                        <a href="{{fullUrl}}/approve-request/{{this._id}}" class="btn btn-default"> Approve</a>
+                       <strong class="text-success"> YES &nbsp;</strong>   
+                      {{else}}  
+                        <a href="{{fullUrl}}/approve-request/{{this._id}}" class="btn btn-xs icon-link">
+                       <strong class="text-danger"> NO &nbsp;</strong> 
+                        <span class="fa fa-check-square"></span></a>
                       {{/if}}
                     </td>
 
 
-                    <td>
+                    <td class="text-center">
                       {{#if this.resolved}}
-                        YES 
+                        <strong class="text-success"> YES &nbsp;</strong>   
                       {{else}}
-                        NO  
-                        <a href="{{fullUrl}}/resolve-request/{{this._id}}" class="btn btn-default"> Approve</a>
+                        <a href="{{fullUrl}}/resolve-request/{{this._id}}" class="btn btn-xs icon-link">
+                        <strong class="text-danger"> NO &nbsp;</strong>
+                        <span class="fa fa-check-square"></span></a>
                       {{/if}}
 
                     </td>
 
 
-                    <td><a href="{{fullUrl}}/comments/new/{{this._id}}" class="btn btn-default"> Add Comment</a></td>
+                    <td class="text-right">
+                      <a href="{{fullUrl}}/comments/new/{{this._id}}" class="btn btn-primary btn-xs"> <span class="fa fa-comment"></span> Add</a> &nbsp;&nbsp;
+
+                    </td>
 
                   </tr>
                   {{/each}}

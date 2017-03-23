@@ -75,7 +75,7 @@ module.exports = function(app) {
      *  REGISTER A NEW ADMIN
      */
     app.get('/register', (req, res) => {
-      return res.render('admin/register.hbs');
+      return res.render('admin/register.hbs',{level : req.session.level});
     });
 
 

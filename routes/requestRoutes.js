@@ -15,7 +15,9 @@ module.exports = function(app) {
     Requests.find().then((result) => {
       res.render('requests/all.hbs',{
         results : result,
-        fullUrl : fullUrl
+        fullUrl : fullUrl,
+        level : req.session.level
+
       });
     }, (e) => {
       res.status(400).send(e);
@@ -66,7 +68,8 @@ module.exports = function(app) {
           res.render('requests/all.hbs',{
             results : result,
             message: "Great! The request has been successfully resolved",
-            fullUrl: fullUrl
+            fullUrl: fullUrl,
+            level : req.session.level
           });
         }, (e) => {
           res.status(400).send(e);
@@ -106,7 +109,8 @@ module.exports = function(app) {
                   res.render('requests/all.hbs',{
                     results : result,
                     message: "The request has been successfully approved",
-                    fullUrl: fullUrl
+                    fullUrl: fullUrl,
+                    level : req.session.level
                   });
                 }, (e) => {
                   res.status(400).send(e);
@@ -144,8 +148,9 @@ module.exports = function(app) {
                 Requests.find().then((result) => {
                   res.render('requests/all.hbs',{
                     results : result,
-                    message: "Great! The request has been successfully resolved",
-                    fullUrl: fullUrl
+                    message: "The request has been successfully resolved",
+                    fullUrl: fullUrl,
+                    level : req.session.level
                   });
                 }, (e) => {
                   res.status(400).send(e);
