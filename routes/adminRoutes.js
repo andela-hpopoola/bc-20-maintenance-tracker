@@ -119,7 +119,7 @@ module.exports = function(app) {
         var admin = new Admin({
            first_name: 'Andela',
            last_name: 'Test',
-           email: 'test@andela.com',
+           email: 'testing@andela.com',
            password: '123456',
            phone: '08022222222',
            level: true
@@ -127,7 +127,7 @@ module.exports = function(app) {
 
       admin.save().then((result) => {
           return res.render('admin/login.hbs',{
-            message: `Default Account Created : (Email : ${$result.email}) and (Password : ${result.password}) `
+            message: `Default Account Created : (Email : testing@andela.com) and (Password : 123456)`
           });
       }, (e) => {
         res.status(400).send(e);
