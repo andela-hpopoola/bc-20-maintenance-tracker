@@ -27,7 +27,7 @@
                   <tr>
                     <th style="width:5%;" class="text-center"><strong>#</strong></th>
                     <th style="width:40%;"><strong>Description</strong></th>
-                    <th style="width:15%;"><strong>Request Type</strong></th>
+                    <th style="width:15%;"><strong>Description</strong></th>
                     <th style="width:15%;"><strong>Approved</strong></th>
                     <th style="width:15%;"><strong>Resolved</strong></th>
                     <th style="width:10%;"></th>
@@ -40,38 +40,39 @@
 
                     <td>
                       <h3 class="title">{{ this.title }} </h3>
+                      <p class="description">{{ this.description}}</p>
                     </td>
 
                     <td>
                       {{#if this.request_type}}
-                        Maintenance
+                      <span class="label label-info"> Maintenance </span>
                       {{else}}
-                        Repairs
+                        <span class="label label-info"> Repairs </span>
                       {{/if}}
                     </td>
 
-                    <td style="text-align:center">
+                    <td>
                       {{#if this.approved}}
                         YES  
                       {{else}}
                         NO 
-                        <a href="{{fullUrl}}/approve-request/{{this._id}}" class="btn btn-default btn-xs pull-right"> <span class="fa fa-check"></span></a>
+                        <a href="{{fullUrl}}/approve-request/{{this._id}}" class="btn btn-default"> Approve</a>
                       {{/if}}
                     </td>
 
 
-                    <td style="text-align:center">
+                    <td>
                       {{#if this.resolved}}
                         YES 
                       {{else}}
                         NO  
-                        <a href="{{fullUrl}}/resolve-request/{{this._id}}" class="btn btn-default btn-xs pull-right"> <span class="fa fa-check"></span></a>
+                        <a href="{{fullUrl}}/resolve-request/{{this._id}}" class="btn btn-default"> Approve</a>
                       {{/if}}
 
                     </td>
 
 
-                    <td><a href="{{fullUrl}}/comments/new/{{this._id}}" class="btn btn-primary btn-xs">Comment</a></td>
+                    <td><a href="{{fullUrl}}/comments/new/{{this._id}}" class="btn btn-default"> Add Comment</a></td>
 
                   </tr>
                   {{/each}}

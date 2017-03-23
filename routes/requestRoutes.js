@@ -34,8 +34,7 @@ module.exports = function(app) {
       return res.render('requests/new.hbs', {
           adminName : req.session.name,
           level: req.session.level,
-          users : users,
-          summernote: true
+          users : users
       });
     }, (e) => {
       res.status(400).send(e);
