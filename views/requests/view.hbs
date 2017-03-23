@@ -1,0 +1,39 @@
+{{> header}}
+	
+	{{> navigation}}
+
+		      <div class="row">
+
+		        <div class="col-sm-8 col-sm-push-4">
+
+		        	        <!-- content  start -->
+			        <div id="content">
+
+			          <div class="panel panel-default">
+			            <div class="panel-heading">
+			              <h4>{{ result.title }} ({{#if result.request_type}} Maintenance {{else}} Repairs {{/if}})</h4>
+			            </div>
+
+			            <div class="panel-body no-padding">
+		            	{{{ result.description }}}
+
+			            </div>
+
+			            <div class="panel-footer">
+			            		Resolved : {{#if result.resolved}} YES {{else}} NO {{/if}} <br>
+			            		Approved : {{#if result.approved}} YES {{else}} NO {{/if}} 
+			            </div>
+
+			          </div>
+			          <!-- /.panel panel-default -->
+			        </div> 
+
+		            
+
+		        </div>
+
+		        {{> sidebar}}
+		        
+		      </div>
+
+{{> footer}}

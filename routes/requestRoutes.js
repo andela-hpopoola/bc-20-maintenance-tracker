@@ -83,6 +83,35 @@ module.exports = function(app) {
   });
 
 
+
+   /*
+   *  View Request Page
+   *  View the request
+   */
+  app.get('/requests/:id', (req, res) => {
+
+    var id = req.params.id; 
+
+    Requests.findById(id, (err, result) => {  
+
+        var fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
+
+        // Handle any possible database errors
+        if (err) {
+            res.status(500).send(err);
+        } else {
+
+          res.render('requests/view.hbs',{
+            result : result,
+            fullUrl: fullUrl,
+            level : req.session.level
+          });
+        }
+    });
+      
+  });
+
+
   app.get('/approve-request/:id', (req, res) => {
 
     var id = req.params.id; 
