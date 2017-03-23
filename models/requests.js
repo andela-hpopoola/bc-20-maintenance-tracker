@@ -2,36 +2,45 @@ const mongoose = require('mongoose');
 
 var Requests = mongoose.model('Requests', {
 
+  title: {
+    type: String,
+    required: true
+  },
+
   user_name: {
-  	type: String,
+    type: String,
     required: true
   },
 
   admin_name: {
-  	type: String,
+    type: String,
     required: true
   },
 
-  request: {
+  request_type: {
+    type: String,
+    default: 'maintenance'
+  },
+
+  description: {
     type: String,
     required: true,
   },
 
-  request_type: {
-  	type: String,
-  	default: 'maintenance'
-  },
-
   resolved: {
-  	type: String,
-  	default: 'No'
+    type: Boolean,
+    default: false,
   },
 
   approved: {
-  	type: String,
-  	default: 'No'
+    type: Boolean,
+    default: false,
   },
 
+  read: {
+    type: Boolean,
+    default: false
+  }
 
 });
 

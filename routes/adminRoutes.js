@@ -10,11 +10,12 @@ module.exports = function(app) {
      */
     app.post('/', (req, res) => {
 
+      var email = req['body']['email'].toLowerCase();
+      var password = req['body']['password'];
+
       // Get the email and password
-       var user = {
-          email: req.body.email,
-          password: req.body.password,
-       };
+       var user = { email, password};
+
        console.log(user);
 
        // Find the admin and save in admin variable
@@ -26,8 +27,8 @@ module.exports = function(app) {
            */
           if(!admin){
             return res.render('admin/login.hbs',{
-              email : req.body.email,
-              password : req.body.password,
+              email : email,
+              password : password,
               error : 'Invalid Username or Password'
             });
           } 
@@ -84,20 +85,29 @@ module.exports = function(app) {
      */
     app.post('/register', (req, res) => {
 
+      var email = req['body']['email'].toLowerCase();
+      var password = req['body']['password'];
+
         var admin = new Admin({
            first_name: req.body.first_name,
            last_name: req.body.last_name,
-           email: req.body.email,
-           password: req.body.password,
+           email: email,
+           password: password,
+           phone: req.body.phone,
            level: req.body.level
        });
 
       admin.save().then((result) => {
-          return res.send(result);
+          return res.render('admin/dashboard.hbs',{
+            name : req.session.name,
+            level : req.session.level,
+            message: `You have successfully registered ${$result.first_name} ${result.last_name}`
+          });
       }, (e) => {
         res.status(400).send(e);
       });
 
     });
+    
 
 };

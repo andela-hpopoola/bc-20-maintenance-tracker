@@ -1,0 +1,74 @@
+{{> header}}
+
+		      <div class="row">
+
+		        <div class="">
+		            
+		            <h3>Add a New Request</h3>
+		            {{!-- used to prevent float --}}
+		            <div class="clearfix"></div>
+
+		            <form name="login" action="/requests/new" class="form-horizontal" role="form" method="post">
+
+		            	{{!-- Title --}}
+						<div class="form-group">
+						  <label class="col-sm-2 control-label">Title <span class="mandatory">*</span></label>
+						  <div class="col-sm-7">
+						        <input type="text" id="title" name="title" class="form-control" placeholder="Title of Request" required autofocus>
+						  </div>
+	                  	</div>
+
+						
+						{{!-- User --}}
+						<div class="form-group">
+						  <label class="col-sm-2 control-label">User <span class="mandatory">*</span></label>
+						  <div class="col-sm-7">
+							<select name="user_name" id="user_name" class="form-control">
+								{{#each users}}
+								<option value="{{ this.first_name }} {{ this.last_name}}">{{ this.first_name }} {{ this.last_name}}</option>
+								{{/each}}
+							</select>
+						  </div>
+	                  	</div>
+
+						{{!-- Request Type --}}
+						<div class="form-group">
+						  <label class="col-sm-2 control-label">Request Type <span class="mandatory">*</span></label>
+						  <div class="col-sm-7">
+							<select name="request_type" id="request_type" class="form-control">
+								
+								<option value="Maintenance"> Maintenance</option>
+								<option value="Repairs"> Repairs</option>
+							</select>
+						  </div>
+	                  	</div>
+
+						{{!-- Description --}}
+						<div class="form-group">
+						  <label class="col-sm-2 control-label">Description <span class="mandatory">*</span></label>
+						  <div class="col-sm-7">
+						  		<textarea name="description" id="description" cols="30" rows="10" class="form-control"></textarea>
+						  </div>
+	                  	</div>
+
+						<input type="hidden" name="admin_name" value="{{ adminName }}">
+
+						{{!-- Level is 0 for staff --}}
+						{{#if level}}
+						<input type="hidden" name="resolved" value="true">
+						{{/if}}
+
+						<!-- Submit Button -->
+						<div class="col-sm-offset-2 col-sm-10">
+                       		<button type="submit" class="btn btn-primary">Submit</button>
+                    	</div>
+						
+						<!-- /.Submit Button -->
+
+		            </form>
+
+		        </div>
+		        
+		      </div>
+
+{{> footer}}

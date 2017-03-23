@@ -4,7 +4,16 @@
       <div class="col-sm-8 col-sm-push-4">
 
       <!-- content  start -->
-      <div id="content">
+      <div id="content"> 
+
+        {{#if message}}
+        <div class="alert alert-success" role="alert">
+          <span class="fa fa-check-circle" aria-hidden="true"></span>
+          <span class="sr-only">Message: </span>
+          {{ message }}
+        </div>
+        {{/if}}
+
 
         <h3>Welcome back {{ name }}</h3>
         <p>Your level is {{ level }}</p>

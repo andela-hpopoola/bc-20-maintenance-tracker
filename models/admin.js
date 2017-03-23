@@ -38,19 +38,14 @@ var Admin = mongoose.model('Admin', {
   level:{
   	type:Number,
   	default: 0
+  },
+
+  phone:{
+    type: String,
+    require: true,
+    minlength: 6
   }
 
-  // tokens: [{
-  // 	access: {
-  // 		type: String,
-  // 		require: true
-  // 	},
-
-  // 	token: {
-  // 		type: String,
-  // 		require: true
-  // 	}
-  // }]
 });
 
 module.exports = {Admin}

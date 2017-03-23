@@ -9,7 +9,7 @@ var {mongoose} = require('./config/mongoose');
 var {Admin} = require('./models/admin');
 var {User} = require('./models/user');
 var {Requests} = require('./models/requests');
-var {Repairs} = require('./models/repairs');
+var {Requests} = require('./models/requests');
 var {Comments} = require('./models/comments');
 
 // Start Express
@@ -32,25 +32,24 @@ app.use(session({ secret: 'andela', resave: false, saveUninitialized: true, cook
 app.use(express.static('public'));
 
 // Authentication Middleware
-app.get('*', function(req, res, next) {
+// app.get('*', function(req, res, next) {
 
-  // console.log(req.session);
+//   // console.log(req.session);
 
-  /*
-   *  Disable Authentication it is the homepage
-   *  and the user is not logged in
-   *  
-   */
-  if ((req.url !== '/') && (req.url !== '/logout') && (!req.session.adminId)) {
-    console.log('checkAuth ' + req.url);
-    res.render('admin/login.hbs', { error : 'Kindly log in to access page' });
-    return;
-  }
+//   /*
+//    *  Disable Authentication for the homepage
+//    *  and the user is not logged in
+//    *  
+//    */
+//   if ((req.url !== '/') && (req.url !== '/logout') && (!req.session.adminId)) {
+//     console.log('checkAuth ' + req.url);
+//     res.render('admin/login.hbs', { error : 'Kindly log in to access page' });
+//     return;
+//   }
 
-  next();
+//   next();
 
-
-});
+// });
 
 /*
  * Handlebars is used as the view engine
@@ -60,6 +59,9 @@ app.set('view engine', 'hbs');
 
 // register the partials used for hbs
 hbs.registerPartials(__dirname + '/views/partials');
+
+//Helper Class for counter
+hbs.registerHelper("counter", index => index + 1);
 
 /*
  *  Home Page
@@ -90,49 +92,8 @@ app.get('/', (req, res) => {
 
 // Load Admin Routes
 require('./routes/adminRoutes')(app);
-require('./routes/repairRoutes')(app);
-
-
-/*
- *  Users
- *
- * @redirect to all requests.hbs
- */
-app.get('/users', (req, res) => {
-
-  return res.render('users/new.hbs');
-});
-
-
-app.post('/users', (req, res) => {
-
-    var user = new User({
-       first_name: req.body.first_name,
-       last_name: req.body.last_name,
-       email: req.body.email,
-       phone: req.body.phone,
-   });
-
-  user.save().then((result) => {
-      return res.send(result);
-  }, (e) => {
-    // TODO: change to html page
-    res.status(400).send(e);
-  });
-
-});
-
-
-// Show Request Page
-app.get('/users/all', (req, res) => {
-  User.find().then((result) => {
-  res.render('users/all.hbs',{
-    results : result,
-  });
-  }, (e) => {
-    res.status(400).send(e);
-  });
-});
+require('./routes/requestRoutes')(app);
+require('./routes/userRoutes')(app);
 
 
 app.listen(port, () => {
