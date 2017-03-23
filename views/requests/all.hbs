@@ -1,5 +1,7 @@
 {{> header}}
 
+{{> navigation}}
+
     <div class="row">
       <div class="col-sm-8 col-sm-push-4">
 
@@ -11,64 +13,79 @@
           </div>
           {{/if}}
 
-      <!-- content  start -->
-      <div id="content">
+        <!-- content  start -->
+        <div id="content">
 
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <h4>All Requests</h4>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4>All Requests</h4>
+            </div>
+
+            <div class="table-responsive">
+              <table class="table table-bordered table-striped table-hover responsive">
+                <thead>
+                  <tr>
+                    <th style="width:5%;" class="text-center"><strong>#</strong></th>
+                    <th style="width:40%;"><strong>Description</strong></th>
+                    <th style="width:15%;"><strong>Description</strong></th>
+                    <th style="width:15%;"><strong>Approved</strong></th>
+                    <th style="width:15%;"><strong>Resolved</strong></th>
+                    <th style="width:10%;"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {{#each results}}
+                  <tr>
+                    <td class="text-center">{{counter @index }}</td>
+
+                    <td>
+                      <h3 class="title">{{ this.title }} </h3>
+                      <p class="description">{{ this.description}}</p>
+                    </td>
+
+                    <td>
+                      {{#if this.request_type}}
+                      <span class="label label-info"> Maintenance </span>
+                      {{else}}
+                        <span class="label label-info"> Repairs </span>
+                      {{/if}}
+                    </td>
+
+                    <td>
+                      {{#if this.approved}}
+                        YES  
+                      {{else}}
+                        NO 
+                        <a href="{{fullUrl}}/approve-request/{{this._id}}" class="btn btn-default"> Approve</a>
+                      {{/if}}
+                    </td>
+
+
+                    <td>
+                      {{#if this.resolved}}
+                        YES 
+                      {{else}}
+                        NO  
+                        <a href="{{fullUrl}}/resolve-request/{{this._id}}" class="btn btn-default"> Approve</a>
+                      {{/if}}
+
+                    </td>
+
+
+                    <td><a href="{{fullUrl}}/comments/new/{{this._id}}" class="btn btn-default"> Add Comment</a></td>
+
+                  </tr>
+                  {{/each}}
+
+                  </tbody>
+              </table>
+            </div>
+
           </div>
+          <!-- /.panel panel-default -->
+        </div> 
 
-          <div class="table-responsive">
-            <table class="table table-bordered table-striped table-hover responsive">
-              <thead>
-                <tr>
-                  <th style="width:5%;" class="text-center"><strong>#</strong></th>
-                  <th style="width:60%;"><strong>Description</strong></th>
-                  <th style="width:15%;"><strong>Approved</strong></th>
-                  <th style="width:15%;"><strong>Resolved</strong></th>
-                  <th style="width:15%;"></th>
-                </tr>
-              </thead>
-              <tbody>
-                {{#each results}}
-                <tr>
-                  <td class="text-center">{{counter @index }}</td>
-                  <td><h3>{{ this.title }} <br><small>{{ this.description}}</small></h3></td>
-
-                  <td>
-                    {{#if this.approved}}
-                      YES  
-                    {{else}}
-                      NO 
-                      <a href="{{fullUrl}}/approve-request/{{this._id}}" class="btn btn-default"> Approve</a>
-                    {{/if}}
-                  </td>
-
-
-                  <td>
-                    {{#if this.resolved}}
-                      YES 
-                    {{else}}
-                      NO  
-                      <a href="{{fullUrl}}/resolve-request/{{this._id}}" class="btn btn-default"> Approve</a>
-                    {{/if}}
-
-                  </td>
-
-
-                  <td><a href="{{fullUrl}}/comments/new/{{this._id}}" class="btn btn-default"> Add Comment</a></td>
-
-                </tr>
-                {{/each}}
-
-                </tbody>
-            </table>
-          </div>
-
-        </div>
-        <!-- /.panel panel-default -->
-      </div>   
+      </div>  
     
       {{> sidebar}}
                     

@@ -18,8 +18,8 @@ var Requests = mongoose.model('Requests', {
   },
 
   request_type: {
-    type: String,
-    default: 'maintenance'
+    type: Boolean,
+    default: true
   },
 
   description: {
