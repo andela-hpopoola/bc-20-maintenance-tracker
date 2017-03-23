@@ -19,9 +19,9 @@ module.exports = function(app) {
       });
     }, (e) => {
       res.status(400).send(e);
+
     });
   });
-
 
 
    /*
@@ -37,7 +37,7 @@ module.exports = function(app) {
           adminName : req.session.name,
           level: req.session.level,
           users : users,
-          requestID : id
+          commentID : id
       });
     }, (e) => {
       res.status(400).send(e);
@@ -55,7 +55,7 @@ module.exports = function(app) {
          title: req.body.title,
          description: req.body.description,
          admin_name: req.body.admin_name,
-         request_id: req.body.request_id,
+         comment_id: req.body.comment_id,
      });
 
     comment.save().then((result) => {
@@ -75,14 +75,14 @@ module.exports = function(app) {
         });
                 
     }, (e) => {
-      // COMMENT: change to html page
+      // TODO: change to html page
       res.status(400).send(e);
     });
 
   });
 
 
-  app.get('/approve-comment/:id', (req, res) => {
+  app.get('/comments/view/:id', (req, res) => {
 
     var id = req.params.id; 
 
@@ -94,45 +94,7 @@ module.exports = function(app) {
         } else {
             // Update each attribute with any possible attribute that may have been submitted in the body of the comment
             // If that attribute isn't in the comment body, default back to whatever it was before.
-            comment.approved = true;
-
-            // Save the updated document back to the database
-            comment.save(function (err, comment) {
-                if (err) {
-                    res.status(500).send(err)
-                }
-
-                var fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
-                // Redirect to the comments page to show all
-                Comments.find().then((result) => {
-                  res.render('comments/all.hbs',{
-                    results : result,
-                    message: "The comment has been successfully approved",
-                    fullUrl: fullUrl
-                  });
-                }, (e) => {
-                  res.status(400).send(e);
-                });
-
-            });
-        }
-    });
-
-  });
-
-  app.get('/resolve-comment/:id', (req, res) => {
-
-    var id = req.params.id; 
-
-    Comments.findById(id, (err, comment) => {  
-
-        // Handle any possible database errors
-        if (err) {
-            res.status(500).send(err);
-        } else {
-            // Update each attribute with any possible attribute that may have been submitted in the body of the comment
-            // If that attribute isn't in the comment body, default back to whatever it was before.
-            comment.resolved = true;
+            comment.read = true;
 
             // Save the updated document back to the database
             comment.save(function (err, comment) {
@@ -144,9 +106,8 @@ module.exports = function(app) {
 
                 // Redirect to the comments page to show all
                 Comments.find().then((result) => {
-                  res.render('comments/all.hbs',{
+                  res.render('comments/view.hbs',{
                     results : result,
-                    message: "Great! The comment has been successfully resolved",
                     fullUrl: fullUrl
                   });
                 }, (e) => {
@@ -158,5 +119,6 @@ module.exports = function(app) {
     });
 
   });
+
 
 };

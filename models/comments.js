@@ -20,6 +20,11 @@ var Comments = mongoose.model('Comments', {
   description: {
   	type: String,
   	required: true
+  },
+
+  read: {
+    type: Boolean,
+    default: false
   }
 
 });
