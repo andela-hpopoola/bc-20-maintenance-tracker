@@ -19,7 +19,11 @@
               
                 <li class="nav-icon dropdown">
                     <a href="#" data-toggle="dropdown" aria-expanded="true" class="dropdown-toggle">
-                        <span> Administrator </span>
+                        {{#if level}}
+                        <span> Administrator Account </span>
+                        {{else}}
+                        <span> Staff Account </span>
+                        {{/if}}
                     </a>
                 </li>
             </ul>

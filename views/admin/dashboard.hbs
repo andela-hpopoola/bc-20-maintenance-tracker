@@ -3,7 +3,7 @@
   {{> navigation}}
 
     <div class="row">
-      <div class="col-sm-9 col-sm-push-3">
+      <div class="col-sm-8 col-sm-push-4">
 
         <!-- content  start -->
         <div id="content"> 
@@ -18,13 +18,57 @@
 
 
           <h3>Welcome back {{ name }}</h3>
-          <p>Your level is {{ level }}</p>
 
           <div class="row">
-            <div class="col-xs-6 col-sm-3 dash-menu"><a href="http://ism.edu.ng/admin/pages/"><i class="fa fa-file-text"></i>All Pages</a></div>
-            <div class="col-xs-6 col-sm-3 dash-menu"><a href="http://ism.edu.ng/admin/programmes/"><i class="fa fa-briefcase"></i>All Programmes</a></div>
-            <div class="col-xs-6 col-sm-3 dash-menu"><a href="http://ism.edu.ng/admin/campaign/current.php"><i class="fa fa-paste"></i>Current Campaigns</a></div>
-            <div class="col-xs-6 col-sm-3 dash-menu"><a href="http://ism.edu.ng/admin/users/logout.php"><i class="fa fa-sign-out"></i>Logout</a></div>
+
+              <div class="col-sm-6 col-md-4 portlet portlet-blue">
+                <a href="/requests">
+                  <i class="fa fa-bars"></i>
+                  <h3>All Requests</h3>
+                </a>
+              </div>
+
+              
+              <div class="col-sm-6 col-md-4 portlet portlet-blue">
+                <a href="/users">
+                  <i class="fa fa-users"></i>
+                  <h3>All Users</h3>
+                </a>
+              </div>
+                  
+              
+              <div class="col-sm-6 col-md-4 portlet portlet-blue">
+                <a href="/register">
+                  <i class="fa fa-user"></i>
+                  <h3>New Staff</h3>
+                </a>
+              </div>
+              
+
+              <div class="col-sm-6 col-md-4 portlet portlet-blue">
+                <a href="/requests/new">
+                  <i class="fa fa-bars"></i>
+                  <h3>Add Requests</h3>
+                </a>
+              </div>
+              
+
+              <div class="col-sm-6 col-md-4 portlet portlet-blue">
+                <a href="/users/new">
+                  <i class="fa fa-user"></i>
+                  <h3>New User</h3>
+                </a>
+              </div>
+                  
+
+              <div class="col-sm-6 col-md-4 portlet portlet-blue">
+                <a href="/logout">
+                  <i class="fa fa-sign-out"></i>
+                  <h3>Logout</h3>
+                </a>
+              </div>
+                                     
+
           </div>
 
           {{!-- Add things that needs attention here --}}

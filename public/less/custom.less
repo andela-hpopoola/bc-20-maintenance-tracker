@@ -2,6 +2,7 @@
 body{
 	// necessary because of fixed header used
 	margin-top:150px;
+	font-size: 14px;
 }
 //Bootstrap Overwrite
 .form-control {
@@ -51,4 +52,34 @@ li.nav-icon {
 	    top: 4px;
 	    right: 4px;
 	}
+}
+
+// Side Left Bar
+.list-group-item{
+	padding: 15px 20px;
+} 
+
+.list-group-item.header{
+	background: @brand-gray;
+	color: #666;
+	font-weight: 600;
+	font-size: 14px;
+	&:hover, &:focus{
+	color: @brand-danger;
+	background: @brand-gray;
+	}
+}
+
+
+a.list-group-item:hover, button.list-group-item:hover, a.list-group-item:focus, button.list-group-item:focus{
+    z-index: 2;
+    color: @brand-danger;
+    background-color: white;
+    border-color: #ddd;
+}
+
+.list-group-item.active, .list-group-item.active:hover, .list-group-item.active:focus {
+    color: @brand-danger;
+    background: #fcfcfc;
+    border-color: #ddd;
 }
