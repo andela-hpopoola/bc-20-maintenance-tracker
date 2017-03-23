@@ -1,85 +1,104 @@
 {{> header}}
+	
+	{{> navigation}}
 
 		      <div class="row">
 
-		        <div class="">
+		        <div class="col-sm-8 col-sm-push-4">
+
+		        	        <!-- content  start -->
+			        <div id="content">
+
+			          <div class="panel panel-default">
+			            <div class="panel-heading">
+			              <h4>Create a New Staff Account</h4>
+			            </div>
+
+			            <div class="panel-body">
+
+									
+				            <form name="login" action="/register" class="form-horizontal" role="form" method="post">
+								
+								{{!-- First Name --}}
+								<div class="form-group">
+								  <label class="col-sm-2 control-label">First Name <span class="mandatory">*</span></label>
+								  <div class="col-sm-7">
+								        <input type="text" id="first_name" name="first_name" class="form-control" placeholder="First Name" required autofocus>
+								  </div>
+			                  	</div>
+
+			                  	
+								{{!-- Last Name --}}
+								<div class="form-group">
+								  <label class="col-sm-2 control-label">Last Name <span class="mandatory">*</span></label>
+								  <div class="col-sm-7">
+								        <input type="text" id="last_name" name="last_name" class="form-control" placeholder="Last Name" required>
+								  </div>
+			                  	</div>
+
+
+			                  	
+								{{!-- Email Address --}}
+								<div class="form-group">
+								  <label class="col-sm-2 control-label">Email Address <span class="mandatory">*</span></label>
+								  <div class="col-sm-7">
+								       <input type="email" id="inputEmail" name="email" class="form-control" placeholder="Email address" required>
+								  </div>
+			                  	</div>
+
+
+			                  	
+								{{!-- Password --}}
+								<div class="form-group">
+								  <label class="col-sm-2 control-label">Password <span class="mandatory">*</span></label>
+								  <div class="col-sm-7">
+									<input type="password" name="password" id="password" class="form-control" placeholder="Password" required>
+								  </div>
+			                  	</div>
+
+
+
+			                  	{{!-- Phone Number --}}
+								<div class="form-group">
+								  <label class="col-sm-2 control-label">Phone Number<span class="mandatory">*</span></label>
+								  <div class="col-sm-7">
+								       <input type="text" id="phone" name="phone" class="form-control" placeholder="Enter Phone Number">
+								  </div>
+			                  	</div>
+			                  	
+
+			                  	{{!-- Access Level --}}
+								<div class="form-group">
+								  <label class="col-sm-2 control-label">Access Level<span class="mandatory">*</span></label>
+								  <div class="col-sm-7">
+									<select name="level" id="level" class="form-control">
+										<option value="1">Administrator</option>
+										<option value="0">Staff Member</option>
+									</select>
+								  </div>
+			                  	</div>
+
+
+								<!-- Submit Button -->
+								<div class="col-sm-offset-2 col-sm-10">
+		                       		<button type="submit" class="btn btn-primary">Submit</button>
+		                    	</div>
+								
+								<!-- /.Submit Button -->
+
+				            </form>
+
+			            </div>
+
+			          </div>
+			          <!-- /.panel panel-default -->
+			        </div> 
+
 		            
-		            <h3>Create New User</h3>
-		            {{!-- used to prevent float --}}
-		            <div class="clearfix"></div>
-
-		            <form name="login" action="/register" class="form-horizontal" role="form" method="post">
-						
-						{{!-- First Name --}}
-						<div class="form-group">
-						  <label class="col-sm-2 control-label">First Name <span class="mandatory">*</span></label>
-						  <div class="col-sm-7">
-						        <input type="text" id="first_name" name="first_name" class="form-control" placeholder="First Name" required autofocus>
-						  </div>
-	                  	</div>
-
-	                  	
-						{{!-- Last Name --}}
-						<div class="form-group">
-						  <label class="col-sm-2 control-label">Last Name <span class="mandatory">*</span></label>
-						  <div class="col-sm-7">
-						        <input type="text" id="last_name" name="last_name" class="form-control" placeholder="Last Name" required>
-						  </div>
-	                  	</div>
-
-
-	                  	
-						{{!-- Email Address --}}
-						<div class="form-group">
-						  <label class="col-sm-2 control-label">Email Address <span class="mandatory">*</span></label>
-						  <div class="col-sm-7">
-						       <input type="email" id="inputEmail" name="email" class="form-control" placeholder="Email address" required>
-						  </div>
-	                  	</div>
-
-
-	                  	
-						{{!-- Password --}}
-						<div class="form-group">
-						  <label class="col-sm-2 control-label">Password <span class="mandatory">*</span></label>
-						  <div class="col-sm-7">
-							<input type="password" name="password" id="password" class="form-control" placeholder="Password" required>
-						  </div>
-	                  	</div>
-
-
-
-	                  	{{!-- Phone Number --}}
-						<div class="form-group">
-						  <label class="col-sm-2 control-label">Phone Number<span class="mandatory">*</span></label>
-						  <div class="col-sm-7">
-						       <input type="text" id="phone" name="phone" class="form-control" placeholder="Enter Phone Number" required>
-						  </div>
-	                  	</div>
-	                  	
-
-	                  	{{!-- Access Level --}}
-						<div class="form-group">
-						  <label class="col-sm-2 control-label">Access Level<span class="mandatory">*</span></label>
-						  <div class="col-sm-7">
-							<select name="level" id="level" class="form-control">
-								<option value="1">Administrator</option>
-								<option value="0">Staff Member</option>
-							</select>
-						  </div>
-	                  	</div>
-
-
-						<!-- Submit Button -->
-						<div class="col-sm-offset-2 col-sm-10">
-                       		<button type="submit" class="btn btn-primary">Submit</button>
-                    	</div>
-						
-						<!-- /.Submit Button -->
-
-		            </form>
 
 		        </div>
+
+		        {{> sidebar}}
 		        
 		      </div>
 
