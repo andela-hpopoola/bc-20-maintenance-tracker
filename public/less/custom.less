@@ -1,7 +1,9 @@
 //Bootstrap Overwrite
 .form-control {
-	border: 2px solid @input-border; //increase border
-	box-shadow: none; //remove box shadow
+	//increase bootstraps border
+	border: 2px solid @input-border; 
+	//remove box shadow
+	box-shadow: none; 
 	height: 45px;
 	box-shadow:none;
 	color: @text-color;
@@ -11,15 +13,37 @@
 	}
 }
 
-.input-group-btn .btn{
+// For input group
+.input-group-btn .btn {
 	height: 45px;
 }
 
-.input-group, .form-group{
+// Space out my Input forms
+.input-group, .form-group {
     margin-bottom: 30px
 }
 
-.help-block{
-	font-size: 10px;
-	color: #aaa;
+
+
+// Navigation
+.navbar.navbar-default {
+	height: 80px;
+}
+
+// Navigation Icons
+li.nav-icon {
+	margin: 20px 20px 0 0;
+
+	// Icons
+	i{
+		font-size: 22px;
+	}
+
+	// Notification
+	.badge{
+		background: @brand-danger;
+	    position: absolute;
+	    top: 4px;
+	    right: 4px;
+	}
 }
