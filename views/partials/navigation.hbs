@@ -15,16 +15,17 @@
                     <a href="#" class="dropdown-toggle" aria-expanded="true" data-toggle="dropdown"><i class="fa fa-user"></i></a>
                 </li>
 
-                <li class="nav-icon"><a href="#"><i class="fa fa-bell"></i> <span class="badge badge-danger">3</span></a></li>
+                <li class="nav-icon"><a href="#"><i class="fa fa-bell"></i> <span class="badge badge-danger">{{notification}}</span></a></li>
               
                 <li class="nav-icon dropdown">
-                    <a href="#" data-toggle="dropdown" aria-expanded="true" class="dropdown-toggle">
-                        {{#if level}}
-                        <span> Administrator Account </span>
+                        
+                    <a href="/logout" data-toggle="dropdown" aria-expanded="true" class="dropdown-toggle"> {{#if level}}
+                        <strong> Administrator </strong>
                         {{else}}
-                        <span> Staff Account </span>
+                        <strong> Staff </strong>
                         {{/if}}
-                    </a>
+
+                    ( Logout )</a>
                 </li>
             </ul>
             

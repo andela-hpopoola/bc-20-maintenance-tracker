@@ -3,11 +3,17 @@
           <div class="list-group">
             
             <!-- Dashboard -->
+            <a class="list-group-item title" href="/">
+              <span class="fa fa-cube"></span> &nbsp; Maintenance Tracker
+            </a>
+
+            <!-- Dashboard -->
             <a class="list-group-item header" href="/">
               <span class="fa fa-dashboard"></span> &nbsp; Dashboard
             </a>
 
             <!-- Requests -->
+            {{#if level}}
             <a data-toggle="collapse" class="list-group-item header collapsed" href="#collapseRequests">
               <span class="fa fa-bars"></span> &nbsp; Requests
             </a>
@@ -19,6 +25,11 @@
                 <span class="fa fa-caret-right"></span> &nbsp; New Request
               </a>
             </div>
+            {{else}}
+            <a class="list-group-item header" href="requests/new">
+              <span class="fa fa-bars"></span> &nbsp; New Request
+            </a>
+            {{/if}}
 
 
             <!-- Users -->
@@ -36,7 +47,9 @@
 
 
             <!-- Add New Staff -->
+            {{#if level}}
             <a class="list-group-item header" href="/register"><span class="fa fa-user"></span> &nbsp; Register Staff</a>
+            {{/if}}
 
             {{!-- <a class="list-group-item header" href="/register"><span class="fa fa-user"></span> &nbsp; Edit Profile</a> --}}
 

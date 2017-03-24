@@ -43,7 +43,8 @@ module.exports = function(app) {
           // Redirect to the dashboard
           return res.render('admin/dashboard.hbs',{
             name : req.session.name,
-            level : req.session.level
+            level : req.session.level,
+            id : req.session.adminId
           });
 
         }, (e) => {

@@ -1,6 +1,7 @@
 var express = require('express');
 var session = require('express-session')
 const hbs = require('hbs');
+const _ = require('lodash');
 var bodyParser = require('body-parser');
 var {ObjectID} = require('mongodb');
 

@@ -22,11 +22,6 @@ var Comments = mongoose.model('Comments', {
   	required: true
   },
 
-  picture: {
-    type: String,
-    default: null
-  },
-
   read: {
     type: Boolean,
     default: false

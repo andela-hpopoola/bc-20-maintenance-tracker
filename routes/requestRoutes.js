@@ -2,6 +2,7 @@
 var {mongoose} = require('../config/mongoose');
 var {Requests} = require('../models/requests');
 var {User} = require('../models/user');
+var {Admin} = require('../models/admin');
 
 
 module.exports = function(app) {

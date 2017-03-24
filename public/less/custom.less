@@ -59,7 +59,7 @@ li.nav-icon {
 	padding: 15px 20px;
 } 
 
-.list-group-item.header{
+.list-group-item.header, .list-group-item.title{
 	background: @brand-gray;
 	color: #666;
 	font-weight: 600;
@@ -68,6 +68,12 @@ li.nav-icon {
 	color: @brand-danger;
 	background: @brand-gray;
 	}
+}
+
+.list-group-item.title, .list-group-item.title:hover{
+	color: darken(@brand-primary, 10%);
+	font-weight: 900;
+	text-transform: uppercase;
 }
 
 
