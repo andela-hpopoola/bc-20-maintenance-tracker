@@ -25,8 +25,7 @@ module.exports = function(app) {
     Comments.find().then((result) => {
       res.render('comments/all.hbs',{
         results : result,
-        fullUrl : fullUrl,
-        level : req.session.level
+        fullUrl : fullUrl
       });
     }, (e) => {
       res.status(400).send(e);
@@ -80,8 +79,7 @@ module.exports = function(app) {
           res.render('comments/all.hbs',{
             results : result,
             message: "Your comment has been successfully added",
-            fullUrl: fullUrl,
-            level : req.session.level
+            fullUrl: fullUrl
           });
         }, (e) => {
           res.status(400).send(e);
@@ -121,8 +119,7 @@ module.exports = function(app) {
                 Comments.find().then((result) => {
                   res.render('comments/view.hbs',{
                     results : result,
-                    fullUrl: fullUrl,
-                    level : req.session.level
+                    fullUrl: fullUrl
                   });
                 }, (e) => {
                   res.status(400).send(e);
