@@ -13,6 +13,10 @@ Maintenance Tracker is system to allow reporting of maintenance and repairs requ
 1. A staff member should be able to report a maintenance or repair case (and upload a photo if necessary).
 1. A staff member should be able to get a notification (web), once the request has been approved/rejected by the admin
 
+### Extra Credit
+The app should be able to automatically send an SMS notification to the person that is to do maintenance.
+
+
 ## Getting Started
 
 1. Clone the repository:
@@ -26,10 +30,13 @@ https://github.com/harunapopoola/bc-20-maintenance-tracker.git
     $ npm install
     ```
 
-4. Setup database locally:
-    ```
-    $ rake db:setup
-    ```
+4. Download and Install database locally ()
+
+5. Install Default Admin
+
+  ```
+  http://localhost:3000/install
+ ```
 
 ## Backend
 1. Node.js - A JavaScript runtime for building server-side JavaScript applications.
@@ -42,21 +49,23 @@ https://github.com/harunapopoola/bc-20-maintenance-tracker.git
 
 1. jQuery -  The Write Less, Do More, JavaScript Library.
 
-1. Express Handlebars - Handlebars provides the power necessary to let you build semantic templates effectively with no frustration.
+1. Less -  Less extends CSS with dynamic behavior such as variables, mixins, operations and functions.
+
+
 
 
 ## Dependencies.
 ------------------------
-body-parser
-express
-express-handlebars
-express-session
-hbs
-mongoose
-validator
+-body-parser - The bodyParser object exposes various factories to create middlewares.
+-express - A minimal and flexible Node.js web application framework.managing sessions
+-express-session - The express-session is used to manage session in the application
+-hbs - Handlebars let you build semantic templates effectively with no frustration.
+-mongoose - Mongoose is a MongoDB object modeling tool designed to work in an asynchronous environment.
+-validator - Validate.js provides a declarative way of validating javascript objects.  
 
 Clone this repository locally by running https://github.com/harunapopoola/bc-20-maintenance-tracker.git
-git clone https://github.com/azemoh/bc-19-maintenance-tracker.git
-Navigate into the project folder cd bc-19-maintenance-tracker.
-
-Install required nodejs packages
+git clone https://github.com/harunapopoola/bc-20-maintenance-tracker.git
+Navigate into the project folder cd https://github.com/harunapopoola/bc-20-maintenance-tracker.git
+Install required nodejs packages with `npm install`
+Run application via `http://localhost:3000/`
+Install default Admin via `http://localhost:3000/install`
