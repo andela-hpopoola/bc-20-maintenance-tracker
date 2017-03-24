@@ -47,7 +47,8 @@ module.exports = function(app) {
           adminName : req.session.name,
           level: req.session.level,
           users : users,
-          commentID : id
+          requestID : id,
+          summernote: true
       });
     }, (e) => {
       res.status(400).send(e);
@@ -61,33 +62,14 @@ module.exports = function(app) {
    */
   app.post('/comments/new', (req, res) => {
 
-    console.log(req.files);
-
-    //Upload images here
-    upload(req, res, function (err, image) {
-        if (err) {
-          // An error occurred when uploading 
-          console.log(err);
-          return;
-        }
-        
-        // Everything went fine 
-        console.log('File has beens successfully uploaded');
-        console.log(req.files);
-
-        return;
-        
-      });
-
-
-    var comment = new Comments({
+    var comments = new Comments({
        title: req.body.title,
        description: req.body.description,
        admin_name: req.body.admin_name,
-       comment_id: req.body.comment_id,
+       request_id: req.body.request_id
    });
 
-    comment.save().then((result) => {
+    comments.save().then((result) => {
         // Redirect to the comments page to show all
         Comments.find().then((result) => {
 

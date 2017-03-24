@@ -10,7 +10,7 @@
 		            {{!-- used to prevent float --}}
 		            <div class="clearfix"></div>
 
-		            <form name="login" action="/comments/new" class="form-horizontal" role="form" method="post" enctype = "multipart/form-data">
+		            <form name="login" action="/comments/new" class="form-horizontal" role="form" method="post">
 
 		            	{{!-- Title --}}
 						<div class="form-group">
@@ -25,12 +25,12 @@
 						<div class="form-group">
 						  <label class="col-sm-2 control-label">Description <span class="mandatory">*</span></label>
 						  <div class="col-sm-7">
-						  		<textarea name="description" id="editor" cols="30" rows="10" class="form-control"></textarea>
+						  		<textarea name="description" id="editor" cols="30" rows="10" class="editor"></textarea>
 						  </div>
 	                  	</div>
 
 
-						<input type="hidden" name="admin_name" value="{{ adminName }}">
+						<input type="hidden" name="admin_name" value="{{ adminName}}">
 						<input type="hidden" name="request_id" value="{{ requestID }}">
 
 					

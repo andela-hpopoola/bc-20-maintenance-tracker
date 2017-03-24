@@ -133,6 +133,17 @@ module.exports = function(app) {
                     res.status(500).send(err)
                 }
 
+
+
+                var notify = new Notify({
+                     title: request.title,
+                     type : true,
+                     request_id: id,
+                 });
+
+                notify.save().then((result) => {}, (e) => {});
+
+
                 var fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
                 // Redirect to the requests page to show all
                 Requests.find().then((result) => {

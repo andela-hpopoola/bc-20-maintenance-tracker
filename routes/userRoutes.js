@@ -40,7 +40,7 @@ module.exports = function(app) {
       return res.render('admin/dashboard.hbs',{
           name : req.session.name,
           level : req.session.level,
-          message: `You have successfully registered user (${$result.first_name} ${result.last_name})`
+          message: `You have successfully registered user (${result.first_name} ${result.last_name})`
         });
     }, (e) => {
       // TODO: change to html page

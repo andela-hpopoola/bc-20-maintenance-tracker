@@ -102,7 +102,7 @@ module.exports = function(app) {
           return res.render('admin/dashboard.hbs',{
             name : req.session.name,
             level : req.session.level,
-            message: `You have successfully registered ${$result.first_name} ${result.last_name}`
+            message: `You have successfully registered ${result.first_name} ${result.last_name}`
           });
       }, (e) => {
         res.status(400).send(e);

@@ -1,5 +1,7 @@
 {{> header}}
 
+  {{> navigation}}
+
     <div class="row">
       <div class="col-sm-8 col-sm-push-4">
 
@@ -11,40 +13,43 @@
           </div>
           {{/if}}
 
-      <!-- content  start -->
-      <div id="content">
+          <!-- content  start -->
+          <div id="content">
 
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <h4>All comments</h4>
-          </div>
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h4>All comments</h4>
+              </div>
 
-          <div class="table-responsive">
-            <table class="table table-bordered table-striped table-hover responsive">
-              <thead>
-                <tr>
-                  <th style="width:5%;" class="text-center"><strong>#</strong></th>
-                  <th style="width:60%;"><strong>Description</strong></th>
-                  <th style="width:15%;"></th>
-                </tr>
-              </thead>
-              <tbody>
-                {{#each results}}
-                <tr>
-                  <td class="text-center">{{counter @index }}</td>
-                  <td><h3>{{ this.title }} <br><small>{{ this.description}}</small></h3></td>
-                  <td></td>
+              <div class="table-responsive">
+                <table class="table table-bordered table-striped table-hover responsive">
+                  <thead>
+                    <tr>
+                      <th style="width:10%;" class="text-center"><strong>#</strong></th>
+                      <th style="width:90%;"><strong>Description</strong></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {{#each results}}
+                    <tr>
+                      <td class="text-center">{{counter @index }}</td>
+                      <td><h3 class="title">{{ this.title }} </h3>
+                      <div>{{{ this.description }}}</div>
+                      </td>
+                      <td></td>
 
-                </tr>
-                {{/each}}
+                    </tr>
+                    {{/each}}
 
-                </tbody>
-            </table>
-          </div>
+                    </tbody>
+                </table>
+              </div>
 
-        </div>
-        <!-- /.panel panel-default -->
-      </div>   
+            </div>
+            <!-- /.panel panel-default -->
+          </div>  
+
+      </div> 
     
       {{> sidebar}}
                     
