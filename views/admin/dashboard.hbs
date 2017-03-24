@@ -17,11 +17,26 @@
           {{/if}}
 
 
-          <h3>Welcome back {{ name }}</h3>
+          <h3 class="top-title">Welcome back {{ name }}</h3>
+
+
+          {{#if level}}
+          
+          {{!-- Dont show nofications for administrators --}}
+          {{else}}
+            {{#if approved}}
+              <div class="alert alert-info" role="alert">
+                <span class="fa fa-check-circle" aria-hidden="true"></span>
+                <span class="sr-only">Message: </span>
+                You have {{ approved }} approved request(s) and {{ resolved }} resolved request(s) 
+              </div>
+            {{/if}}
+          {{/if}}
+
 
           <div class="row">
 
-              <div class="col-sm-6 col-md-4 portlet portlet-blue">
+              <div class="col-sm-6 col-md-4 portlet portlet-red">
                 <a href="/requests">
                   <i class="fa fa-bars"></i>
                   <h3>All Requests</h3>
@@ -37,7 +52,7 @@
               </div>
                   
               
-              <div class="col-sm-6 col-md-4 portlet portlet-blue">
+              <div class="col-sm-6 col-md-4 portlet portlet-purple">
                 <a href="/register">
                   <i class="fa fa-user"></i>
                   <h3>New Staff</h3>
@@ -45,7 +60,7 @@
               </div>
               
 
-              <div class="col-sm-6 col-md-4 portlet portlet-blue">
+              <div class="col-sm-6 col-md-4 portlet portlet-orange">
                 <a href="/requests/new">
                   <i class="fa fa-bars"></i>
                   <h3>Add Requests</h3>
@@ -53,7 +68,7 @@
               </div>
               
 
-              <div class="col-sm-6 col-md-4 portlet portlet-blue">
+              <div class="col-sm-6 col-md-4 portlet portlet-black">
                 <a href="/users/new">
                   <i class="fa fa-user"></i>
                   <h3>New User</h3>
@@ -61,7 +76,7 @@
               </div>
                   
 
-              <div class="col-sm-6 col-md-4 portlet portlet-blue">
+              <div class="col-sm-6 col-md-4 portlet portlet-green">
                 <a href="/logout">
                   <i class="fa fa-sign-out"></i>
                   <h3>Logout</h3>
