@@ -2,11 +2,9 @@
 
 
 ## Introduction
-------------
 Maintenance Tracker is system to allow reporting of maintenance and repairs request, to track the maintenance process and escalate unusual delays. 
 
 ## Features
----------------------------------
 1. The admin for this app will be the person in charge of Facilities. 
 1. An admin should be able to view all maintenance / repairs requests. 
 1. An admin should be able to add names and contacts (phone number) for the people doing maintenance. 
@@ -16,7 +14,6 @@ Maintenance Tracker is system to allow reporting of maintenance and repairs requ
 1. A staff member should be able to get a notification (web), once the request has been approved/rejected by the admin
 
 ## Getting Started
-------------------
 
 1. Clone the repository:
 ```
@@ -24,25 +21,41 @@ https://github.com/harunapopoola/bc-20-maintenance-tracker.git
 ```
 2. Navigate into the cloned repository folder
 
+3. Install dependencies:
+    ```
+    $ npm install
+    ```
+
+4. Setup database locally:
+    ```
+    $ rake db:setup
+    ```
+
 ## Backend
----------------
 1. Node.js - A JavaScript runtime for building server-side JavaScript applications.
 1. Express - A minimal and flexible Node.js web application framework.managing sessions
 1. MongoDB - A NoSQL open source relational database.
 
 
 ## Front-end
--------------------
 1. Bootstrap - A sleek, intuitive, and powerful mobile first front-end framework for faster and easier web development.
 
 1. jQuery -  The Write Less, Do More, JavaScript Library.
 
+1. Express Handlebars - Handlebars provides the power necessary to let you build semantic templates effectively with no frustration.
+
 
 ## Dependencies.
 ------------------------
+body-parser
+express
+express-handlebars
+express-session
+hbs
+mongoose
+validator
 
-
-Clone this repository locally by running
+Clone this repository locally by running https://github.com/harunapopoola/bc-20-maintenance-tracker.git
 git clone https://github.com/azemoh/bc-19-maintenance-tracker.git
 Navigate into the project folder cd bc-19-maintenance-tracker.
 
