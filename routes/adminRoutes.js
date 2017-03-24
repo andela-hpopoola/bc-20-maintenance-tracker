@@ -1,6 +1,7 @@
 // Load my models
 var {mongoose} = require('../config/mongoose');
 var {Admin} = require('../models/admin');
+var {Requests} = require('../models/requests');
 
 
 module.exports = function(app) {
@@ -15,8 +16,6 @@ module.exports = function(app) {
 
       // Get the email and password
        var user = { email, password};
-
-       console.log(user);
 
        // Find the admin and save in admin variable
        Admin.findOne(user).then((admin) => {
@@ -33,18 +32,32 @@ module.exports = function(app) {
             });
           } 
 
-          // console.log(admin);
 
           // Add sessions here
           req.session.adminId = admin._id;
           req.session.level = admin.level;
           req.session.name = admin.first_name + ' ' + admin.last_name;
 
-          // Redirect to the dashboard
-          return res.render('admin/dashboard.hbs',{
-            name : req.session.name,
-            level : req.session.level,
-            id : req.session.adminId
+          Requests.count({approved: true}).then((approved) => {
+
+            Requests.count({resolved: true}).then((resolved) => {
+
+              // Redirect to the dashboard
+              return res.render('admin/dashboard.hbs',{
+                name : req.session.name,
+                level : req.session.level,
+                id : req.session.adminId,
+                approved: approved,
+                resolved: resolved
+              });
+
+
+            }, (e) => {
+              res.status(400).send(e);      
+            });
+       
+          }, (e) => {
+            res.status(400).send(e);      
           });
 
         }, (e) => {

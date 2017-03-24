@@ -3,6 +3,7 @@ var {mongoose} = require('../config/mongoose');
 var {Requests} = require('../models/requests');
 var {User} = require('../models/user');
 var {Admin} = require('../models/admin');
+var {Notify} = require('../models/notify');
 
 
 module.exports = function(app) {
@@ -133,15 +134,14 @@ module.exports = function(app) {
                     res.status(500).send(err)
                 }
 
-
-
                 var notify = new Notify({
                      title: request.title,
                      type : true,
                      request_id: id,
                  });
 
-                notify.save().then((result) => {}, (e) => {});
+                notify.save((result) => { console.log('Save Successful')}, (e) => {});
+
 
 
                 var fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
@@ -182,6 +182,16 @@ module.exports = function(app) {
                 if (err) {
                     res.status(500).send(err)
                 }
+
+                 var notify = new Notify({
+                     title: request.title,
+                     type : true,
+                     request_id: id,
+                 });
+
+                notify.save((result) => { console.log('Save Successful')}, (e) => {});
+
+
 
                 var fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
 
